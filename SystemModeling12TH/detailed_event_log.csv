@@ -1,0 +1,663 @@
+time,event_type,product_id,machine_index,additional_info
+5.1003014363740045,product_arrival,1,,
+5.1003014363740045,machine_request,1,0.0,
+5.1003014363740045,machine_allocated,1,0.0,Waiting Time: 0.00
+5.1003014363740045,processing_start,1,0.0,Processing Time: 2.74
+5.226945631587699,product_arrival,2,,
+5.226945631587699,machine_request,2,0.0,
+6.489876559938267,product_arrival,3,,
+6.489876559938267,machine_request,3,0.0,
+7.84196081691081,processing_complete,1,0.0,
+7.84196081691081,machine_request,1,1.0,
+7.84196081691081,machine_allocated,1,1.0,Waiting Time: 0.00
+7.84196081691081,processing_start,1,1.0,Processing Time: 4.34
+7.84196081691081,machine_allocated,2,0.0,Waiting Time: 2.62
+7.84196081691081,processing_start,2,0.0,Processing Time: 2.42
+10.25894722587258,processing_complete,2,0.0,
+10.25894722587258,machine_request,2,1.0,
+10.25894722587258,machine_allocated,3,0.0,Waiting Time: 3.77
+10.25894722587258,processing_start,3,0.0,Processing Time: 2.24
+12.177759879423466,processing_complete,1,1.0,
+12.177759879423466,machine_request,1,2.0,
+12.177759879423466,machine_allocated,1,2.0,Waiting Time: 0.00
+12.177759879423466,processing_start,1,2.0,Processing Time: 5.01
+12.177759879423466,machine_allocated,2,1.0,Waiting Time: 1.92
+12.177759879423466,processing_start,2,1.0,Processing Time: 3.23
+12.503066948296109,processing_complete,3,0.0,
+12.503066948296109,machine_request,3,1.0,
+13.157839923978681,product_arrival,4,,
+13.157839923978681,machine_request,4,0.0,
+13.157839923978681,machine_allocated,4,0.0,Waiting Time: 0.00
+13.157839923978681,processing_start,4,0.0,Processing Time: 3.04
+15.408133357427612,processing_complete,2,1.0,
+15.408133357427612,machine_request,2,2.0,
+15.408133357427612,machine_allocated,3,1.0,Waiting Time: 2.91
+15.408133357427612,processing_start,3,1.0,Processing Time: 4.09
+16.20181452194859,processing_complete,4,0.0,
+16.20181452194859,machine_request,4,1.0,
+17.18310090425371,processing_complete,1,2.0,
+17.18310090425371,machine_failure,1,2.0,Repair Time: 5.56
+18.405299930091545,product_arrival,5,,
+18.405299930091545,machine_request,5,0.0,
+18.405299930091545,machine_allocated,5,0.0,Waiting Time: 0.00
+18.405299930091545,processing_start,5,0.0,Processing Time: 2.82
+19.493735203295522,processing_complete,3,1.0,
+19.493735203295522,machine_request,3,2.0,
+19.493735203295522,machine_allocated,4,1.0,Waiting Time: 3.29
+19.493735203295522,processing_start,4,1.0,Processing Time: 4.38
+21.230224795176834,processing_complete,5,0.0,
+21.230224795176834,machine_request,5,1.0,
+22.74350809772806,machine_repaired,1,2.0,
+22.74350809772806,machine_request,1,3.0,
+22.74350809772806,machine_allocated,1,3.0,Waiting Time: 0.00
+22.74350809772806,processing_start,1,3.0,Processing Time: 5.43
+22.74350809772806,machine_allocated,2,2.0,Waiting Time: 7.34
+22.74350809772806,processing_start,2,2.0,Processing Time: 4.44
+23.877363095618296,processing_complete,4,1.0,
+23.877363095618296,machine_request,4,2.0,
+23.877363095618296,machine_allocated,5,1.0,Waiting Time: 2.65
+23.877363095618296,processing_start,5,1.0,Processing Time: 4.10
+24.39424963495897,product_arrival,6,,
+24.39424963495897,machine_request,6,0.0,
+24.39424963495897,machine_allocated,6,0.0,Waiting Time: 0.00
+24.39424963495897,processing_start,6,0.0,Processing Time: 3.21
+27.183318004013636,processing_complete,2,2.0,
+27.183318004013636,machine_request,2,3.0,
+27.183318004013636,machine_allocated,3,2.0,Waiting Time: 7.69
+27.183318004013636,processing_start,3,2.0,Processing Time: 5.40
+27.60233223701383,processing_complete,6,0.0,
+27.60233223701383,machine_request,6,1.0,
+27.976204331982213,processing_complete,5,1.0,
+27.976204331982213,machine_request,5,2.0,
+27.976204331982213,machine_allocated,6,1.0,Waiting Time: 0.37
+27.976204331982213,processing_start,6,1.0,Processing Time: 4.29
+28.174195556055203,processing_complete,1,3.0,
+28.174195556055203,machine_request,1,4.0,
+28.174195556055203,machine_allocated,1,4.0,Waiting Time: 0.00
+28.174195556055203,processing_start,1,4.0,Processing Time: 7.31
+28.174195556055203,machine_allocated,2,3.0,Waiting Time: 0.99
+28.174195556055203,processing_start,2,3.0,Processing Time: 6.07
+32.264152051614495,processing_complete,6,1.0,
+32.264152051614495,machine_request,6,2.0,
+32.5783920264077,processing_complete,3,2.0,
+32.5783920264077,machine_failure,3,2.0,Repair Time: 1.62
+32.622899331985266,product_arrival,7,,
+32.622899331985266,machine_request,7,0.0,
+32.622899331985266,machine_allocated,7,0.0,Waiting Time: 0.00
+32.622899331985266,processing_start,7,0.0,Processing Time: 2.40
+34.20215499651541,machine_repaired,3,2.0,
+34.20215499651541,machine_request,3,3.0,
+34.20215499651541,machine_allocated,4,2.0,Waiting Time: 10.32
+34.20215499651541,processing_start,4,2.0,Processing Time: 4.68
+34.24876723375452,processing_complete,2,3.0,
+34.24876723375452,machine_failure,2,3.0,Repair Time: 2.37
+34.33104261788367,product_arrival,8,,
+34.33104261788367,machine_request,8,0.0,
+35.022378935779074,processing_complete,7,0.0,
+35.022378935779074,machine_request,7,1.0,
+35.022378935779074,machine_allocated,7,1.0,Waiting Time: 0.00
+35.022378935779074,processing_start,7,1.0,Processing Time: 3.86
+35.022378935779074,machine_allocated,8,0.0,Waiting Time: 0.69
+35.022378935779074,processing_start,8,0.0,Processing Time: 2.65
+35.48698411504768,processing_complete,1,4.0,
+35.48698411504768,machine_failure,1,4.0,Repair Time: 11.80
+36.615646668900325,machine_repaired,2,3.0,
+36.615646668900325,machine_request,2,4.0,
+36.615646668900325,machine_allocated,3,3.0,Waiting Time: 2.41
+36.615646668900325,processing_start,3,3.0,Processing Time: 6.14
+37.66969189064942,processing_complete,8,0.0,
+37.66969189064942,machine_request,8,1.0,
+38.8828218067669,processing_complete,7,1.0,
+38.8828218067669,machine_request,7,2.0,
+38.8828218067669,machine_allocated,8,1.0,Waiting Time: 1.21
+38.8828218067669,processing_start,8,1.0,Processing Time: 4.21
+38.88449052447952,processing_complete,4,2.0,
+38.88449052447952,machine_failure,4,2.0,Repair Time: 2.44
+39.37971699555608,product_arrival,9,,
+39.37971699555608,machine_request,9,0.0,
+39.37971699555608,machine_allocated,9,0.0,Waiting Time: 0.00
+39.37971699555608,processing_start,9,0.0,Processing Time: 3.13
+41.32699133679003,machine_repaired,4,2.0,
+41.32699133679003,machine_request,4,3.0,
+41.32699133679003,machine_allocated,5,2.0,Waiting Time: 13.35
+41.32699133679003,processing_start,5,2.0,Processing Time: 5.06
+42.51108763319354,processing_complete,9,0.0,
+42.51108763319354,machine_request,9,1.0,
+42.754097708907395,processing_complete,3,3.0,
+42.754097708907395,machine_request,3,4.0,
+42.754097708907395,machine_allocated,4,3.0,Waiting Time: 1.43
+42.754097708907395,processing_start,4,3.0,Processing Time: 6.25
+43.090403520731094,processing_complete,8,1.0,
+43.090403520731094,machine_request,8,2.0,
+43.090403520731094,machine_allocated,9,1.0,Waiting Time: 0.58
+43.090403520731094,processing_start,9,1.0,Processing Time: 3.25
+46.34378167252812,processing_complete,9,1.0,
+46.34378167252812,machine_request,9,2.0,
+46.382405704490836,processing_complete,5,2.0,
+46.382405704490836,machine_request,5,3.0,
+46.382405704490836,machine_allocated,6,2.0,Waiting Time: 14.12
+46.382405704490836,processing_start,6,2.0,Processing Time: 4.65
+47.290238062050456,machine_repaired,1,4.0,
+47.290238062050456,product_completion,1,,Total Time: 42.19
+47.290238062050456,machine_allocated,2,4.0,Waiting Time: 10.67
+47.290238062050456,processing_start,2,4.0,Processing Time: 7.37
+48.99989055809721,processing_complete,4,3.0,
+48.99989055809721,machine_request,4,4.0,
+48.99989055809721,machine_allocated,5,3.0,Waiting Time: 2.62
+48.99989055809721,processing_start,5,3.0,Processing Time: 5.79
+51.03199456459594,processing_complete,6,2.0,
+51.03199456459594,machine_request,6,3.0,
+51.03199456459594,machine_allocated,7,2.0,Waiting Time: 12.15
+51.03199456459594,processing_start,7,2.0,Processing Time: 4.89
+54.663489469721355,processing_complete,2,4.0,
+54.663489469721355,product_completion,2,,Total Time: 49.44
+54.663489469721355,machine_allocated,3,4.0,Waiting Time: 11.91
+54.663489469721355,processing_start,3,4.0,Processing Time: 6.96
+54.79321001556498,processing_complete,5,3.0,
+54.79321001556498,machine_request,5,4.0,
+54.79321001556498,machine_allocated,6,3.0,Waiting Time: 3.76
+54.79321001556498,processing_start,6,3.0,Processing Time: 5.70
+55.92152466645946,processing_complete,7,2.0,
+55.92152466645946,machine_request,7,3.0,
+55.92152466645946,machine_allocated,8,2.0,Waiting Time: 12.83
+55.92152466645946,processing_start,8,2.0,Processing Time: 4.72
+60.49553117813092,processing_complete,6,3.0,
+60.49553117813092,machine_request,6,4.0,
+60.49553117813092,machine_allocated,7,3.0,Waiting Time: 4.57
+60.49553117813092,processing_start,7,3.0,Processing Time: 6.34
+60.64642687851697,processing_complete,8,2.0,
+60.64642687851697,machine_request,8,3.0,
+60.64642687851697,machine_allocated,9,2.0,Waiting Time: 14.30
+60.64642687851697,processing_start,9,2.0,Processing Time: 4.66
+61.62145800008903,processing_complete,3,4.0,
+61.62145800008903,product_completion,3,,Total Time: 55.13
+61.62145800008903,machine_allocated,4,4.0,Waiting Time: 12.62
+61.62145800008903,processing_start,4,4.0,Processing Time: 7.01
+62.17274883776639,product_arrival,10,,
+62.17274883776639,machine_request,10,0.0,
+62.17274883776639,machine_allocated,10,0.0,Waiting Time: 0.00
+62.17274883776639,processing_start,10,0.0,Processing Time: 2.31
+62.6493015037442,product_arrival,11,,
+62.6493015037442,machine_request,11,0.0,
+63.22999979567077,product_arrival,12,,
+63.22999979567077,machine_request,12,0.0,
+64.47972237221109,processing_complete,10,0.0,
+64.47972237221109,machine_request,10,1.0,
+64.47972237221109,machine_allocated,10,1.0,Waiting Time: 0.00
+64.47972237221109,processing_start,10,1.0,Processing Time: 3.92
+64.47972237221109,machine_allocated,11,0.0,Waiting Time: 1.83
+64.47972237221109,processing_start,11,0.0,Processing Time: 2.36
+65.30872705088186,processing_complete,9,2.0,
+65.30872705088186,machine_request,9,3.0,
+66.83554825533739,processing_complete,7,3.0,
+66.83554825533739,machine_request,7,4.0,
+66.83554825533739,machine_allocated,8,3.0,Waiting Time: 6.19
+66.83554825533739,processing_start,8,3.0,Processing Time: 6.03
+66.8361707026938,processing_complete,11,0.0,
+66.8361707026938,machine_request,11,1.0,
+66.8361707026938,machine_allocated,12,0.0,Waiting Time: 3.61
+66.8361707026938,processing_start,12,0.0,Processing Time: 3.31
+68.16686678149364,product_arrival,13,,
+68.16686678149364,machine_request,13,0.0,
+68.22460397005302,product_arrival,14,,
+68.22460397005302,machine_request,14,0.0,
+68.39859120594056,processing_complete,10,1.0,
+68.39859120594056,machine_request,10,2.0,
+68.39859120594056,machine_allocated,10,2.0,Waiting Time: 0.00
+68.39859120594056,processing_start,10,2.0,Processing Time: 5.04
+68.39859120594056,machine_allocated,11,1.0,Waiting Time: 1.56
+68.39859120594056,processing_start,11,1.0,Processing Time: 3.73
+68.63093934580718,processing_complete,4,4.0,
+68.63093934580718,product_completion,4,,Total Time: 55.47
+68.63093934580718,machine_allocated,5,4.0,Waiting Time: 13.84
+68.63093934580718,processing_start,5,4.0,Processing Time: 6.47
+70.14825279024359,processing_complete,12,0.0,
+70.14825279024359,machine_request,12,1.0,
+70.14825279024359,machine_allocated,13,0.0,Waiting Time: 1.98
+70.14825279024359,processing_start,13,0.0,Processing Time: 2.95
+72.12910498397974,processing_complete,11,1.0,
+72.12910498397974,machine_request,11,2.0,
+72.12910498397974,machine_allocated,12,1.0,Waiting Time: 1.98
+72.12910498397974,processing_start,12,1.0,Processing Time: 4.32
+72.86425068568266,processing_complete,8,3.0,
+72.86425068568266,machine_request,8,4.0,
+72.86425068568266,machine_allocated,9,3.0,Waiting Time: 7.56
+72.86425068568266,processing_start,9,3.0,Processing Time: 6.00
+73.1008531328104,processing_complete,13,0.0,
+73.1008531328104,machine_request,13,1.0,
+73.1008531328104,machine_allocated,14,0.0,Waiting Time: 4.88
+73.1008531328104,processing_start,14,0.0,Processing Time: 3.35
+73.43490228897383,processing_complete,10,2.0,
+73.43490228897383,machine_request,10,3.0,
+73.43490228897383,machine_allocated,11,2.0,Waiting Time: 1.31
+73.43490228897383,processing_start,11,2.0,Processing Time: 4.77
+74.60233862341823,product_arrival,15,,
+74.60233862341823,machine_request,15,0.0,
+75.10327857474307,processing_complete,5,4.0,
+75.10327857474307,product_completion,5,,Total Time: 56.70
+75.10327857474307,machine_allocated,6,4.0,Waiting Time: 14.61
+75.10327857474307,processing_start,6,4.0,Processing Time: 6.55
+76.45187336903547,processing_complete,14,0.0,
+76.45187336903547,machine_request,14,1.0,
+76.45187336903547,machine_allocated,15,0.0,Waiting Time: 1.85
+76.45187336903547,processing_start,15,0.0,Processing Time: 3.04
+76.45262524478288,processing_complete,12,1.0,
+76.45262524478288,machine_request,12,2.0,
+76.45262524478288,machine_allocated,13,1.0,Waiting Time: 3.35
+76.45262524478288,processing_start,13,1.0,Processing Time: 4.03
+78.20748858376378,processing_complete,11,2.0,
+78.20748858376378,machine_failure,11,2.0,Repair Time: 2.14
+78.86483662706931,processing_complete,9,3.0,
+78.86483662706931,machine_failure,9,3.0,Repair Time: 9.57
+79.49050615315085,processing_complete,15,0.0,
+79.49050615315085,machine_request,15,1.0,
+79.69602575850102,product_arrival,16,,
+79.69602575850102,machine_request,16,0.0,
+79.69602575850102,machine_allocated,16,0.0,Waiting Time: 0.00
+79.69602575850102,processing_start,16,0.0,Processing Time: 2.78
+80.34921750364941,machine_repaired,11,2.0,
+80.34921750364941,machine_request,11,3.0,
+80.34921750364941,machine_allocated,12,2.0,Waiting Time: 3.90
+80.34921750364941,processing_start,12,2.0,Processing Time: 4.34
+80.48253171839607,processing_complete,13,1.0,
+80.48253171839607,machine_request,13,2.0,
+80.48253171839607,machine_allocated,14,1.0,Waiting Time: 4.03
+80.48253171839607,processing_start,14,1.0,Processing Time: 4.38
+81.6561606029365,processing_complete,6,4.0,
+81.6561606029365,machine_failure,6,4.0,Repair Time: 4.57
+82.48026312741769,processing_complete,16,0.0,
+82.48026312741769,machine_failure,16,0.0,Repair Time: 2.54
+84.68958544131155,processing_complete,12,2.0,
+84.68958544131155,machine_request,12,3.0,
+84.68958544131155,machine_allocated,13,2.0,Waiting Time: 4.21
+84.68958544131155,processing_start,13,2.0,Processing Time: 4.51
+84.85872170912991,processing_complete,14,1.0,
+84.85872170912991,machine_request,14,2.0,
+84.85872170912991,machine_allocated,15,1.0,Waiting Time: 5.37
+84.85872170912991,processing_start,15,1.0,Processing Time: 4.05
+85.01838302281038,machine_repaired,16,0.0,
+85.01838302281038,machine_request,16,1.0,
+86.22973568052412,machine_repaired,6,4.0,
+86.22973568052412,product_completion,6,,Total Time: 61.84
+86.22973568052412,machine_allocated,7,4.0,Waiting Time: 19.39
+86.22973568052412,processing_start,7,4.0,Processing Time: 6.73
+88.431213294224,machine_repaired,9,3.0,
+88.431213294224,machine_request,9,4.0,
+88.431213294224,machine_allocated,10,3.0,Waiting Time: 15.00
+88.431213294224,processing_start,10,3.0,Processing Time: 6.32
+88.60503766913847,product_arrival,17,,
+88.60503766913847,machine_request,17,0.0,
+88.60503766913847,machine_allocated,17,0.0,Waiting Time: 0.00
+88.60503766913847,processing_start,17,0.0,Processing Time: 2.65
+88.90734327432389,processing_complete,15,1.0,
+88.90734327432389,machine_request,15,2.0,
+88.90734327432389,machine_allocated,16,1.0,Waiting Time: 3.89
+88.90734327432389,processing_start,16,1.0,Processing Time: 4.21
+89.19632297593823,processing_complete,13,2.0,
+89.19632297593823,machine_request,13,3.0,
+89.19632297593823,machine_allocated,14,2.0,Waiting Time: 4.34
+89.19632297593823,processing_start,14,2.0,Processing Time: 4.79
+91.25588051567223,processing_complete,17,0.0,
+91.25588051567223,machine_request,17,1.0,
+91.3557981967757,product_arrival,18,,
+91.3557981967757,machine_request,18,0.0,
+91.3557981967757,machine_allocated,18,0.0,Waiting Time: 0.00
+91.3557981967757,processing_start,18,0.0,Processing Time: 2.94
+92.95782445112845,processing_complete,7,4.0,
+92.95782445112845,product_completion,7,,Total Time: 60.33
+92.95782445112845,machine_allocated,8,4.0,Waiting Time: 20.09
+92.95782445112845,processing_start,8,4.0,Processing Time: 6.49
+93.11559082270955,processing_complete,16,1.0,
+93.11559082270955,machine_request,16,2.0,
+93.11559082270955,machine_allocated,17,1.0,Waiting Time: 1.86
+93.11559082270955,processing_start,17,1.0,Processing Time: 3.82
+93.98590044686922,processing_complete,14,2.0,
+93.98590044686922,machine_request,14,3.0,
+93.98590044686922,machine_allocated,15,2.0,Waiting Time: 5.08
+93.98590044686922,processing_start,15,2.0,Processing Time: 4.68
+94.29185384032954,processing_complete,18,0.0,
+94.29185384032954,machine_request,18,1.0,
+94.75214708596775,processing_complete,10,3.0,
+94.75214708596775,machine_failure,10,3.0,Repair Time: 4.99
+96.60316708894467,product_arrival,19,,
+96.60316708894467,machine_request,19,0.0,
+96.60316708894467,machine_allocated,19,0.0,Waiting Time: 0.00
+96.60316708894467,processing_start,19,0.0,Processing Time: 3.35
+96.93788707364038,processing_complete,17,1.0,
+96.93788707364038,machine_request,17,2.0,
+96.93788707364038,machine_allocated,18,1.0,Waiting Time: 2.65
+96.93788707364038,processing_start,18,1.0,Processing Time: 3.38
+97.90312409339876,product_arrival,20,,
+97.90312409339876,machine_request,20,0.0,
+98.66430258807542,processing_complete,15,2.0,
+98.66430258807542,machine_request,15,3.0,
+98.66430258807542,machine_allocated,16,2.0,Waiting Time: 5.55
+98.66430258807542,processing_start,16,2.0,Processing Time: 4.65
+99.26219811921406,product_arrival,21,,
+99.26219811921406,machine_request,21,0.0,
+99.44976793541962,processing_complete,8,4.0,
+99.44976793541962,product_completion,8,,Total Time: 65.12
+99.44976793541962,machine_allocated,9,4.0,Waiting Time: 11.02
+99.44976793541962,processing_start,9,4.0,Processing Time: 7.07
+99.74293514455819,machine_repaired,10,3.0,
+99.74293514455819,machine_request,10,4.0,
+99.74293514455819,machine_allocated,11,3.0,Waiting Time: 19.39
+99.74293514455819,processing_start,11,3.0,Processing Time: 5.97
+99.94884165064681,processing_complete,19,0.0,
+99.94884165064681,machine_request,19,1.0,
+99.94884165064681,machine_allocated,20,0.0,Waiting Time: 2.05
+99.94884165064681,processing_start,20,0.0,Processing Time: 3.27
+99.97181262721595,product_arrival,22,,
+99.97181262721595,machine_request,22,0.0,
+100.31433720284384,processing_complete,18,1.0,
+100.31433720284384,machine_failure,18,1.0,Repair Time: 2.05
+101.02794875983726,product_arrival,23,,
+101.02794875983726,machine_request,23,0.0,
+102.36214528990358,machine_repaired,18,1.0,
+102.36214528990358,machine_request,18,2.0,
+102.36214528990358,machine_allocated,19,1.0,Waiting Time: 2.41
+102.36214528990358,processing_start,19,1.0,Processing Time: 3.97
+103.21966579093267,processing_complete,20,0.0,
+103.21966579093267,machine_request,20,1.0,
+103.21966579093267,machine_allocated,21,0.0,Waiting Time: 3.96
+103.21966579093267,processing_start,21,0.0,Processing Time: 3.16
+103.3188815479732,processing_complete,16,2.0,
+103.3188815479732,machine_request,16,3.0,
+103.3188815479732,machine_allocated,17,2.0,Waiting Time: 6.38
+103.3188815479732,processing_start,17,2.0,Processing Time: 4.44
+103.78253040227096,product_arrival,24,,
+103.78253040227096,machine_request,24,0.0,
+105.71522216628767,processing_complete,11,3.0,
+105.71522216628767,machine_request,11,4.0,
+105.71522216628767,machine_allocated,12,3.0,Waiting Time: 21.03
+105.71522216628767,processing_start,12,3.0,Processing Time: 6.31
+106.32860756856392,processing_complete,19,1.0,
+106.32860756856392,machine_request,19,2.0,
+106.32860756856392,machine_allocated,20,1.0,Waiting Time: 3.11
+106.32860756856392,processing_start,20,1.0,Processing Time: 3.62
+106.3585503941618,product_arrival,25,,
+106.3585503941618,machine_request,25,0.0,
+106.38015236758343,processing_complete,21,0.0,
+106.38015236758343,machine_request,21,1.0,
+106.38015236758343,machine_allocated,22,0.0,Waiting Time: 6.41
+106.38015236758343,processing_start,22,0.0,Processing Time: 2.75
+106.51845226048974,processing_complete,9,4.0,
+106.51845226048974,machine_failure,9,4.0,Repair Time: 11.25
+107.76254329108829,processing_complete,17,2.0,
+107.76254329108829,machine_request,17,3.0,
+107.76254329108829,machine_allocated,18,2.0,Waiting Time: 5.40
+107.76254329108829,processing_start,18,2.0,Processing Time: 5.31
+109.12653718075549,processing_complete,22,0.0,
+109.12653718075549,machine_request,22,1.0,
+109.12653718075549,machine_allocated,23,0.0,Waiting Time: 8.10
+109.12653718075549,processing_start,23,0.0,Processing Time: 2.32
+109.335147147045,product_arrival,26,,
+109.335147147045,machine_request,26,0.0,
+109.94538776999846,processing_complete,20,1.0,
+109.94538776999846,machine_request,20,2.0,
+109.94538776999846,machine_allocated,21,1.0,Waiting Time: 3.57
+109.94538776999846,processing_start,21,1.0,Processing Time: 4.39
+111.44461996722744,processing_complete,23,0.0,
+111.44461996722744,machine_request,23,1.0,
+111.44461996722744,machine_allocated,24,0.0,Waiting Time: 7.66
+111.44461996722744,processing_start,24,0.0,Processing Time: 3.30
+112.02798454871093,processing_complete,12,3.0,
+112.02798454871093,machine_failure,12,3.0,Repair Time: 3.81
+113.0750592755714,processing_complete,18,2.0,
+113.0750592755714,machine_request,18,3.0,
+113.0750592755714,machine_allocated,19,2.0,Waiting Time: 6.75
+113.0750592755714,processing_start,19,2.0,Processing Time: 4.90
+114.33750576592033,processing_complete,21,1.0,
+114.33750576592033,machine_failure,21,1.0,Repair Time: 1.83
+114.74745973820029,processing_complete,24,0.0,
+114.74745973820029,machine_request,24,1.0,
+114.74745973820029,machine_allocated,25,0.0,Waiting Time: 8.39
+114.74745973820029,processing_start,25,0.0,Processing Time: 2.73
+115.83670277073864,machine_repaired,12,3.0,
+115.83670277073864,machine_request,12,4.0,
+115.83670277073864,machine_allocated,13,3.0,Waiting Time: 26.64
+115.83670277073864,processing_start,13,3.0,Processing Time: 6.25
+116.16739227504506,machine_repaired,21,1.0,
+116.16739227504506,machine_request,21,2.0,
+116.16739227504506,machine_allocated,22,1.0,Waiting Time: 7.04
+116.16739227504506,processing_start,22,1.0,Processing Time: 3.95
+117.47574959556775,processing_complete,25,0.0,
+117.47574959556775,machine_request,25,1.0,
+117.47574959556775,machine_allocated,26,0.0,Waiting Time: 8.14
+117.47574959556775,processing_start,26,0.0,Processing Time: 3.38
+117.7683227719697,machine_repaired,9,4.0,
+117.7683227719697,product_completion,9,,Total Time: 78.39
+117.7683227719697,machine_allocated,10,4.0,Waiting Time: 18.03
+117.7683227719697,processing_start,10,4.0,Processing Time: 7.41
+117.97064879376538,processing_complete,19,2.0,
+117.97064879376538,machine_request,19,3.0,
+117.97064879376538,machine_allocated,20,2.0,Waiting Time: 8.03
+117.97064879376538,processing_start,20,2.0,Processing Time: 5.20
+120.12134024777643,processing_complete,22,1.0,
+120.12134024777643,machine_request,22,2.0,
+120.12134024777643,machine_allocated,23,1.0,Waiting Time: 8.68
+120.12134024777643,processing_start,23,1.0,Processing Time: 3.77
+120.85945306153123,processing_complete,26,0.0,
+120.85945306153123,machine_request,26,1.0,
+122.08895721928221,processing_complete,13,3.0,
+122.08895721928221,machine_request,13,4.0,
+122.08895721928221,machine_allocated,14,3.0,Waiting Time: 28.10
+122.08895721928221,processing_start,14,3.0,Processing Time: 6.04
+123.16932162260261,processing_complete,20,2.0,
+123.16932162260261,machine_request,20,3.0,
+123.16932162260261,machine_allocated,21,2.0,Waiting Time: 7.00
+123.16932162260261,processing_start,21,2.0,Processing Time: 4.34
+123.89167501330965,processing_complete,23,1.0,
+123.89167501330965,machine_request,23,2.0,
+123.89167501330965,machine_allocated,24,1.0,Waiting Time: 9.14
+123.89167501330965,processing_start,24,1.0,Processing Time: 4.00
+125.17929597475755,processing_complete,10,4.0,
+125.17929597475755,product_completion,10,,Total Time: 63.01
+125.17929597475755,machine_allocated,11,4.0,Waiting Time: 19.46
+125.17929597475755,processing_start,11,4.0,Processing Time: 6.56
+127.50744962471862,processing_complete,21,2.0,
+127.50744962471862,machine_request,21,3.0,
+127.50744962471862,machine_allocated,22,2.0,Waiting Time: 7.39
+127.50744962471862,processing_start,22,2.0,Processing Time: 4.40
+127.8945213454259,processing_complete,24,1.0,
+127.8945213454259,machine_request,24,2.0,
+127.8945213454259,machine_allocated,25,1.0,Waiting Time: 10.42
+127.8945213454259,processing_start,25,1.0,Processing Time: 4.09
+128.13029789492518,processing_complete,14,3.0,
+128.13029789492518,machine_request,14,4.0,
+128.13029789492518,machine_allocated,15,3.0,Waiting Time: 29.47
+128.13029789492518,processing_start,15,3.0,Processing Time: 5.69
+131.74042470854238,processing_complete,11,4.0,
+131.74042470854238,machine_failure,11,4.0,Repair Time: 10.18
+131.90772819082125,processing_complete,22,2.0,
+131.90772819082125,machine_request,22,3.0,
+131.90772819082125,machine_allocated,23,2.0,Waiting Time: 8.02
+131.90772819082125,processing_start,23,2.0,Processing Time: 5.09
+131.98542473844475,processing_complete,25,1.0,
+131.98542473844475,machine_request,25,2.0,
+131.98542473844475,machine_allocated,26,1.0,Waiting Time: 11.13
+131.98542473844475,processing_start,26,1.0,Processing Time: 3.92
+133.81616070190765,processing_complete,15,3.0,
+133.81616070190765,machine_request,15,4.0,
+133.81616070190765,machine_allocated,16,3.0,Waiting Time: 30.50
+133.81616070190765,processing_start,16,3.0,Processing Time: 6.02
+135.90109380020874,processing_complete,26,1.0,
+135.90109380020874,machine_request,26,2.0,
+136.99815852195977,processing_complete,23,2.0,
+136.99815852195977,machine_request,23,3.0,
+136.99815852195977,machine_allocated,24,2.0,Waiting Time: 9.10
+136.99815852195977,processing_start,24,2.0,Processing Time: 5.20
+139.83868964089368,processing_complete,16,3.0,
+139.83868964089368,machine_failure,16,3.0,Repair Time: 3.17
+141.92004841516604,machine_repaired,11,4.0,
+141.92004841516604,product_completion,11,,Total Time: 79.27
+141.92004841516604,machine_allocated,12,4.0,Waiting Time: 26.08
+141.92004841516604,processing_start,12,4.0,Processing Time: 7.16
+142.19498081519248,processing_complete,24,2.0,
+142.19498081519248,machine_request,24,3.0,
+142.19498081519248,machine_allocated,25,2.0,Waiting Time: 10.21
+142.19498081519248,processing_start,25,2.0,Processing Time: 4.80
+143.00454248894002,machine_repaired,16,3.0,
+143.00454248894002,machine_request,16,4.0,
+143.00454248894002,machine_allocated,17,3.0,Waiting Time: 35.24
+143.00454248894002,processing_start,17,3.0,Processing Time: 6.23
+145.5336150831706,product_arrival,27,,
+145.5336150831706,machine_request,27,0.0,
+145.5336150831706,machine_allocated,27,0.0,Waiting Time: 0.00
+145.5336150831706,processing_start,27,0.0,Processing Time: 2.96
+145.91015993421925,product_arrival,28,,
+145.91015993421925,machine_request,28,0.0,
+146.99018795332927,processing_complete,25,2.0,
+146.99018795332927,machine_request,25,3.0,
+146.99018795332927,machine_allocated,26,2.0,Waiting Time: 11.09
+146.99018795332927,processing_start,26,2.0,Processing Time: 4.38
+148.49099225296166,processing_complete,27,0.0,
+148.49099225296166,machine_request,27,1.0,
+148.49099225296166,machine_allocated,27,1.0,Waiting Time: 0.00
+148.49099225296166,processing_start,27,1.0,Processing Time: 3.73
+148.49099225296166,machine_allocated,28,0.0,Waiting Time: 2.58
+148.49099225296166,processing_start,28,0.0,Processing Time: 3.37
+149.07909131597685,processing_complete,12,4.0,
+149.07909131597685,product_completion,12,,Total Time: 85.85
+149.07909131597685,machine_allocated,13,4.0,Waiting Time: 26.99
+149.07909131597685,processing_start,13,4.0,Processing Time: 7.33
+149.23080876704964,processing_complete,17,3.0,
+149.23080876704964,machine_request,17,4.0,
+149.23080876704964,machine_allocated,18,3.0,Waiting Time: 36.16
+149.23080876704964,processing_start,18,3.0,Processing Time: 5.56
+151.37296914696248,processing_complete,26,2.0,
+151.37296914696248,machine_request,26,3.0,
+151.85719822425128,processing_complete,28,0.0,
+151.85719822425128,machine_request,28,1.0,
+152.2192784806914,processing_complete,27,1.0,
+152.2192784806914,machine_request,27,2.0,
+152.2192784806914,machine_allocated,27,2.0,Waiting Time: 0.00
+152.2192784806914,processing_start,27,2.0,Processing Time: 5.41
+152.2192784806914,machine_allocated,28,1.0,Waiting Time: 0.36
+152.2192784806914,processing_start,28,1.0,Processing Time: 4.14
+154.79249699437372,processing_complete,18,3.0,
+154.79249699437372,machine_failure,18,3.0,Repair Time: 7.12
+156.3629360498184,processing_complete,28,1.0,
+156.3629360498184,machine_request,28,2.0,
+156.4051910426072,processing_complete,13,4.0,
+156.4051910426072,product_completion,13,,Total Time: 88.24
+156.4051910426072,machine_allocated,14,4.0,Waiting Time: 28.27
+156.4051910426072,processing_start,14,4.0,Processing Time: 7.37
+157.6244354567133,processing_complete,27,2.0,
+157.6244354567133,machine_failure,27,2.0,Repair Time: 0.99
+158.61187392397858,machine_repaired,27,2.0,
+158.61187392397858,machine_request,27,3.0,
+158.61187392397858,machine_allocated,28,2.0,Waiting Time: 2.25
+158.61187392397858,processing_start,28,2.0,Processing Time: 4.46
+161.91126279784595,machine_repaired,18,3.0,
+161.91126279784595,machine_request,18,4.0,
+161.91126279784595,machine_allocated,19,3.0,Waiting Time: 43.94
+161.91126279784595,processing_start,19,3.0,Processing Time: 6.05
+163.07455303029184,processing_complete,28,2.0,
+163.07455303029184,machine_request,28,3.0,
+163.77554136564663,processing_complete,14,4.0,
+163.77554136564663,product_completion,14,,Total Time: 95.55
+163.77554136564663,machine_allocated,15,4.0,Waiting Time: 29.96
+163.77554136564663,processing_start,15,4.0,Processing Time: 7.20
+167.96314077640127,processing_complete,19,3.0,
+167.96314077640127,machine_failure,19,3.0,Repair Time: 5.02
+170.9735498690712,processing_complete,15,4.0,
+170.9735498690712,machine_failure,15,4.0,Repair Time: 4.60
+172.9823633725297,machine_repaired,19,3.0,
+172.9823633725297,machine_request,19,4.0,
+172.9823633725297,machine_allocated,20,3.0,Waiting Time: 49.81
+172.9823633725297,processing_start,20,3.0,Processing Time: 6.35
+175.569805093583,machine_repaired,15,4.0,
+175.569805093583,product_completion,15,,Total Time: 100.97
+175.569805093583,machine_allocated,16,4.0,Waiting Time: 32.57
+175.569805093583,processing_start,16,4.0,Processing Time: 7.30
+178.27200757219418,product_arrival,29,,
+178.27200757219418,machine_request,29,0.0,
+178.27200757219418,machine_allocated,29,0.0,Waiting Time: 0.00
+178.27200757219418,processing_start,29,0.0,Processing Time: 2.92
+178.75620588895515,product_arrival,30,,
+178.75620588895515,machine_request,30,0.0,
+179.32797586584218,processing_complete,20,3.0,
+179.32797586584218,machine_failure,20,3.0,Repair Time: 6.48
+180.37572520950602,product_arrival,31,,
+180.37572520950602,machine_request,31,0.0,
+181.1924159300047,processing_complete,29,0.0,
+181.1924159300047,machine_request,29,1.0,
+181.1924159300047,machine_allocated,29,1.0,Waiting Time: 0.00
+181.1924159300047,processing_start,29,1.0,Processing Time: 4.22
+181.1924159300047,machine_allocated,30,0.0,Waiting Time: 2.44
+181.1924159300047,processing_start,30,0.0,Processing Time: 3.05
+182.87065382675289,processing_complete,16,4.0,
+182.87065382675289,product_completion,16,,Total Time: 103.17
+182.87065382675289,machine_allocated,17,4.0,Waiting Time: 33.64
+182.87065382675289,processing_start,17,4.0,Processing Time: 6.14
+184.2428257748999,processing_complete,30,0.0,
+184.2428257748999,machine_failure,30,0.0,Repair Time: 3.33
+185.40997981608865,processing_complete,29,1.0,
+185.40997981608865,machine_request,29,2.0,
+185.40997981608865,machine_allocated,29,2.0,Waiting Time: 0.00
+185.40997981608865,processing_start,29,2.0,Processing Time: 5.04
+185.4440493478427,product_arrival,32,,
+185.4440493478427,machine_request,32,0.0,
+185.80552126791522,machine_repaired,20,3.0,
+185.80552126791522,machine_request,20,4.0,
+185.80552126791522,machine_allocated,21,3.0,Waiting Time: 58.30
+185.80552126791522,processing_start,21,3.0,Processing Time: 6.08
+187.57082122636635,machine_repaired,30,0.0,
+187.57082122636635,machine_request,30,1.0,
+187.57082122636635,machine_allocated,30,1.0,Waiting Time: 0.00
+187.57082122636635,processing_start,30,1.0,Processing Time: 3.54
+187.57082122636635,machine_allocated,31,0.0,Waiting Time: 7.20
+187.57082122636635,processing_start,31,0.0,Processing Time: 2.50
+189.00971999523637,processing_complete,17,4.0,
+189.00971999523637,product_completion,17,,Total Time: 100.40
+189.00971999523637,machine_allocated,18,4.0,Waiting Time: 27.10
+189.00971999523637,processing_start,18,4.0,Processing Time: 7.34
+190.075688573859,processing_complete,31,0.0,
+190.075688573859,machine_request,31,1.0,
+190.075688573859,machine_allocated,32,0.0,Waiting Time: 4.63
+190.075688573859,processing_start,32,0.0,Processing Time: 3.31
+190.45457570848487,processing_complete,29,2.0,
+190.45457570848487,machine_request,29,3.0,
+191.11505240071688,processing_complete,30,1.0,
+191.11505240071688,machine_request,30,2.0,
+191.11505240071688,machine_allocated,30,2.0,Waiting Time: 0.00
+191.11505240071688,processing_start,30,2.0,Processing Time: 4.71
+191.11505240071688,machine_allocated,31,1.0,Waiting Time: 1.04
+191.11505240071688,processing_start,31,1.0,Processing Time: 3.45
+191.88488178830661,processing_complete,21,3.0,
+191.88488178830661,machine_request,21,4.0,
+191.88488178830661,machine_allocated,22,3.0,Waiting Time: 59.98
+191.88488178830661,processing_start,22,3.0,Processing Time: 6.33
+193.38771188310383,processing_complete,32,0.0,
+193.38771188310383,machine_request,32,1.0,
+194.44084128449074,product_arrival,33,,
+194.44084128449074,machine_request,33,0.0,
+194.44084128449074,machine_allocated,33,0.0,Waiting Time: 0.00
+194.44084128449074,processing_start,33,0.0,Processing Time: 2.56
+194.56846969564901,processing_complete,31,1.0,
+194.56846969564901,machine_request,31,2.0,
+194.56846969564901,machine_allocated,32,1.0,Waiting Time: 1.18
+194.56846969564901,processing_start,32,1.0,Processing Time: 4.31
+195.82149381969361,processing_complete,30,2.0,
+195.82149381969361,machine_request,30,3.0,
+195.82149381969361,machine_allocated,31,2.0,Waiting Time: 1.25
+195.82149381969361,processing_start,31,2.0,Processing Time: 5.27
+196.35060141336595,processing_complete,18,4.0,
+196.35060141336595,product_completion,18,,Total Time: 104.99
+196.35060141336595,machine_allocated,19,4.0,Waiting Time: 23.37
+196.35060141336595,processing_start,19,4.0,Processing Time: 6.22
+196.99681491395927,processing_complete,33,0.0,
+196.99681491395927,machine_request,33,1.0,
+198.21464470059664,processing_complete,22,3.0,
+198.21464470059664,machine_request,22,4.0,
+198.21464470059664,machine_allocated,23,3.0,Waiting Time: 61.22
+198.21464470059664,processing_start,23,3.0,Processing Time: 6.36
+198.8834645216616,processing_complete,32,1.0,
+198.8834645216616,machine_request,32,2.0,
+198.8834645216616,machine_allocated,33,1.0,Waiting Time: 1.89
+198.8834645216616,processing_start,33,1.0,Processing Time: 4.31
+199.28747308163608,product_arrival,34,,
+199.28747308163608,machine_request,34,0.0,
+199.28747308163608,machine_allocated,34,0.0,Waiting Time: 0.00
+199.28747308163608,processing_start,34,0.0,Processing Time: 2.73
