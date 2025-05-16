@@ -10,7 +10,6 @@
 import simpy
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
 from tabulate import tabulate
 
 
@@ -260,188 +259,6 @@ def analyze_results(machines, sim_time):
     }
 
 
-def visualize_results(results):
-    """Create visualizations of simulation results"""
-    # Create a figure with subplots
-    fig = plt.figure(figsize=(15, 18))
-
-    # 1. Gantt chart for product flow
-    plt.subplot(4, 1, 1)
-    product_df = results['product_metrics']
-
-    # Sort by arrival time
-    product_df = product_df.sort_values('Arrival')
-
-    # Create Gantt chart
-    for i, row in product_df.iterrows():
-        # Total lead time bar
-        plt.barh(row['Product'], row['Lead Time'], left=row['Arrival'],
-                 height=0.5, color='lightblue')
-
-        # Add machine processing segments with different colors
-        left = row['Arrival']
-        colors = {'M1': 'green', 'M2': 'blue', 'M3': 'purple'}
-
-        for machine in ['M1', 'M2', 'M3']:
-            # Add queue time in lighter color
-            if row[f'{machine} Queue Time'] > 0:
-                plt.barh(row['Product'], row[f'{machine} Queue Time'],
-                         left=left, height=0.5, color=colors[machine], alpha=0.3)
-                left += row[f'{machine} Queue Time']
-
-            # Add processing time in darker color
-            if row[f'{machine} Processing Time'] > 0:
-                plt.barh(row['Product'], row[f'{machine} Processing Time'],
-                         left=left, height=0.5, color=colors[machine], alpha=0.7)
-                left += row[f'{machine} Processing Time']
-
-    plt.title('Product Flow Timeline')
-    plt.xlabel('Simulation Time')
-    plt.ylabel('Product')
-    plt.grid(axis='x', alpha=0.3)
-
-    # Add a legend
-    import matplotlib.patches as mpatches
-    handles = [
-        mpatches.Patch(color='lightblue', label='Total Lead Time'),
-        mpatches.Patch(color='green', alpha=0.3, label='M1 Queue'),
-        mpatches.Patch(color='green', alpha=0.7, label='M1 Processing'),
-        mpatches.Patch(color='blue', alpha=0.3, label='M2 Queue'),
-        mpatches.Patch(color='blue', alpha=0.7, label='M2 Processing'),
-        mpatches.Patch(color='purple', alpha=0.3, label='M3 Queue'),
-        mpatches.Patch(color='purple', alpha=0.7, label='M3 Processing')
-    ]
-    plt.legend(handles=handles, loc='upper right', ncol=2)
-
-    # 2. Machine states over time (failure events)
-    plt.subplot(4, 1, 2)
-
-    # Create machine state dataframe
-    machine_state_df = pd.DataFrame(machine_states, columns=['Time', 'Machine', 'State'])
-
-    # Plot machine failures/repairs
-    for machine in ['M1', 'M2', 'M3']:
-        machine_events = machine_state_df[machine_state_df['Machine'] == machine]
-
-        # Plot markers for failures and repairs
-        failures = machine_events[machine_events['State'] == 'FAILED']
-        repairs = machine_events[machine_events['State'] == 'REPAIRED']
-
-        if not failures.empty:
-            plt.scatter(failures['Time'], [machine] * len(failures),
-                        marker='v', color='red', s=100,
-                        label=f'{machine} Failures' if machine == 'M1' else "")
-
-        if not repairs.empty:
-            plt.scatter(repairs['Time'], [machine] * len(repairs),
-                        marker='^', color='green', s=100,
-                        label=f'{machine} Repairs' if machine == 'M1' else "")
-
-    plt.title('Machine Failures and Repairs')
-    plt.xlabel('Simulation Time')
-    plt.ylabel('Machine')
-    plt.yticks(['M1', 'M2', 'M3'])
-    plt.grid(axis='x', alpha=0.3)
-    plt.legend(loc='upper right')
-
-    # 3. Waiting Time vs Service Time comparison
-    plt.subplot(4, 1, 3)
-
-    # Add a new visualization for waiting time vs service time per product
-    bar_width = 0.35
-    products = product_df['Product']
-    waiting_times = product_df['Total Waiting Time']
-    service_times = product_df['Total Service Time']
-
-    x = np.arange(len(products))
-
-    plt.bar(x - bar_width/2, waiting_times, bar_width, label='Waiting Time', color='salmon')
-    plt.bar(x + bar_width/2, service_times, bar_width, label='Service Time', color='skyblue')
-
-    plt.xlabel('Product')
-    plt.ylabel('Time')
-    plt.title('Waiting Time vs Service Time by Product')
-    plt.xticks(x, products, rotation=90)
-    plt.legend()
-    plt.grid(axis='y', alpha=0.3)
-
-    # 4. System Dynamics - Products in System Over Time
-    plt.subplot(4, 1, 4)
-
-    # Extract system dynamics data from event log
-    event_df = results['event_log']
-
-    # Find arrival and completion events to track system inventory
-    arrivals = event_df[event_df['Event'].str.contains('ARRIVED')]
-    completions = event_df[event_df['Event'].str.contains('FINISHED')]
-
-    # Create timeline of system state
-    timeline = []
-    products_in_system = 0
-
-    # Add arrival events
-    for _, row in arrivals.iterrows():
-        timeline.append((row['Time'], 1))  # +1 for arrivals
-
-    # Add completion events
-    for _, row in completions.iterrows():
-        timeline.append((row['Time'], -1))  # -1 for completions
-
-    # Sort by time
-    timeline.sort(key=lambda x: x[0])
-
-    # Generate cumulative count
-    times = [0]  # Start at time 0
-    counts = [0]  # Start with 0 products
-
-    for time, change in timeline:
-        # Add point just before change
-        times.append(time)
-        counts.append(counts[-1])
-
-        # Add point after change
-        times.append(time)
-        counts.append(counts[-1] + change)
-
-    plt.step(times, counts, where='post', color='blue', linewidth=2)
-    plt.fill_between(times, counts, step='post', alpha=0.3, color='blue')
-    plt.title('Products in System Over Time')
-    plt.xlabel('Simulation Time')
-    plt.ylabel('Number of Products')
-    plt.grid(alpha=0.3)
-
-    # Add machine failure periods as shaded areas
-    failure_starts = machine_state_df[machine_state_df['State'] == 'FAILED']
-    failure_ends = machine_state_df[machine_state_df['State'] == 'REPAIRED']
-
-    failure_periods = []
-    for machine in ['M1', 'M2', 'M3']:
-        machine_failures = failure_starts[failure_starts['Machine'] == machine]
-        machine_repairs = failure_ends[failure_ends['Machine'] == machine]
-
-        # Match failures with repairs
-        if len(machine_failures) == len(machine_repairs):
-            for i in range(len(machine_failures)):
-                start_time = machine_failures.iloc[i]['Time']
-                end_time = machine_repairs.iloc[i]['Time']
-                failure_periods.append((start_time, end_time, machine))
-
-    # Color mapping for machines
-    machine_colors = {'M1': 'red', 'M2': 'orange', 'M3': 'purple'}
-
-    # Add shaded regions for machine failures
-    for start, end, machine in failure_periods:
-        plt.axvspan(start, end, alpha=0.2, color=machine_colors[machine],
-                   label=f'{machine} Failure' if machine not in plt.gca().get_legend_handles_labels()[1] else "")
-
-    # If we have failure periods, add a legend
-    if failure_periods:
-        plt.legend()
-
-    plt.tight_layout()
-    return fig
-
-
 def run_and_display():
     """Run simulation and display results"""
     # Run simulation
@@ -589,10 +406,6 @@ def run_and_display():
     print(f"- Average waiting time: {results['system_metrics']['Average Waiting Time']:.2f}")
     print(f"- Average service time: {results['system_metrics']['Average Service Time']:.2f}")
     print(f"- Waiting time percentage: {results['system_metrics']['Waiting Time Percentage']:.2f}%")
-
-    # Create and display visualizations
-    fig = visualize_results(results)
-    plt.show()
 
     return results
 
