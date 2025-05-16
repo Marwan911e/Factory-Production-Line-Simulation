@@ -1,0 +1,1417 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Factory Production Line Simulation Report</title>
+        <style>
+            body { font-family: Arial, sans-serif; margin: 20px; padding: 0; }
+            h1, h2, h3 { color: #333; }
+            .container { max-width: 1200px; margin: 0 auto; }
+            .table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+            .table th, .table td { padding: 8px; text-align: left; border-bottom: 1px solid #ddd; }
+            .table-striped tbody tr:nth-of-type(odd) { background-color: rgba(0,0,0,.05); }
+            .table-sm th, .table-sm td { padding: 4px; }
+            .summary-box { background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin-bottom: 20px; }
+            .chart-container { margin: 20px 0; text-align: center; }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Factory Production Line Simulation Report</h1>
+            <p>Generated: 2025-05-16 17:24:33</p>
+            
+            <div class="summary-box">
+                <h2>Simulation Summary</h2>
+                <p><strong>Simulation Duration:</strong> 200.0 time units</p>
+                <p><strong>Products Created:</strong> 31</p>
+                <p><strong>Products Completed:</strong> 25</p>
+                <p><strong>Throughput Rate:</strong> 0.1250 products/time unit</p>
+                <p><strong>Average Lead Time:</strong> 34.54 time units</p>
+                <p><strong>Average Wait Time:</strong> 16.69 time units</p>
+                <p><strong>Average Process Time:</strong> 15.79 time units</p>
+                <p><strong>Bottleneck Machine:</strong> Machine2</p>
+            </div>
+            
+            <h2>Machine Statistics</h2>
+            <table border="1" class="dataframe table table-striped">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Machine</th>
+      <th>Products Processed</th>
+      <th>Utilization (%)</th>
+      <th>Availability (%)</th>
+      <th>Failures</th>
+      <th>Downtime</th>
+      <th>Avg Queue Length</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Machine1</td>
+      <td>31</td>
+      <td>76.44</td>
+      <td>86.57</td>
+      <td>4</td>
+      <td>26.87</td>
+      <td>1.94</td>
+    </tr>
+    <tr>
+      <td>Machine2</td>
+      <td>27</td>
+      <td>78.48</td>
+      <td>88.01</td>
+      <td>4</td>
+      <td>23.99</td>
+      <td>1.35</td>
+    </tr>
+    <tr>
+      <td>Machine3</td>
+      <td>25</td>
+      <td>62.44</td>
+      <td>90.11</td>
+      <td>5</td>
+      <td>19.77</td>
+      <td>0.63</td>
+    </tr>
+  </tbody>
+</table>
+            
+            <h2>Product Results</h2>
+            <table border="1" class="dataframe table table-striped">
+  <thead>
+    <tr style="text-align: right;">
+      <th>ID</th>
+      <th>Arrival Time</th>
+      <th>Completion Time</th>
+      <th>Total Time</th>
+      <th>Wait Time</th>
+      <th>Process Time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>P1</td>
+      <td>5.83</td>
+      <td>17.69</td>
+      <td>11.86</td>
+      <td>0.00</td>
+      <td>11.56</td>
+    </tr>
+    <tr>
+      <td>P2</td>
+      <td>15.19</td>
+      <td>29.74</td>
+      <td>14.55</td>
+      <td>0.00</td>
+      <td>14.55</td>
+    </tr>
+    <tr>
+      <td>P3</td>
+      <td>21.15</td>
+      <td>35.56</td>
+      <td>14.41</td>
+      <td>0.00</td>
+      <td>14.41</td>
+    </tr>
+    <tr>
+      <td>P4</td>
+      <td>28.94</td>
+      <td>43.58</td>
+      <td>14.64</td>
+      <td>0.00</td>
+      <td>14.64</td>
+    </tr>
+    <tr>
+      <td>P5</td>
+      <td>31.70</td>
+      <td>52.47</td>
+      <td>20.78</td>
+      <td>3.48</td>
+      <td>17.10</td>
+    </tr>
+    <tr>
+      <td>P6</td>
+      <td>34.47</td>
+      <td>63.06</td>
+      <td>28.58</td>
+      <td>7.23</td>
+      <td>21.35</td>
+    </tr>
+    <tr>
+      <td>P7</td>
+      <td>42.44</td>
+      <td>69.26</td>
+      <td>26.82</td>
+      <td>10.66</td>
+      <td>16.16</td>
+    </tr>
+    <tr>
+      <td>P8</td>
+      <td>42.71</td>
+      <td>77.45</td>
+      <td>34.74</td>
+      <td>12.70</td>
+      <td>22.04</td>
+    </tr>
+    <tr>
+      <td>P9</td>
+      <td>48.83</td>
+      <td>82.11</td>
+      <td>33.28</td>
+      <td>6.56</td>
+      <td>16.02</td>
+    </tr>
+    <tr>
+      <td>P10</td>
+      <td>55.75</td>
+      <td>103.92</td>
+      <td>48.17</td>
+      <td>15.96</td>
+      <td>15.81</td>
+    </tr>
+    <tr>
+      <td>P11</td>
+      <td>57.67</td>
+      <td>108.66</td>
+      <td>50.98</td>
+      <td>35.73</td>
+      <td>15.26</td>
+    </tr>
+    <tr>
+      <td>P12</td>
+      <td>59.91</td>
+      <td>112.74</td>
+      <td>52.83</td>
+      <td>22.54</td>
+      <td>16.20</td>
+    </tr>
+    <tr>
+      <td>P13</td>
+      <td>66.14</td>
+      <td>118.52</td>
+      <td>52.39</td>
+      <td>38.67</td>
+      <td>13.71</td>
+    </tr>
+    <tr>
+      <td>P14</td>
+      <td>79.66</td>
+      <td>121.10</td>
+      <td>41.44</td>
+      <td>29.28</td>
+      <td>12.16</td>
+    </tr>
+    <tr>
+      <td>P15</td>
+      <td>82.68</td>
+      <td>132.60</td>
+      <td>49.93</td>
+      <td>28.03</td>
+      <td>21.90</td>
+    </tr>
+    <tr>
+      <td>P16</td>
+      <td>103.44</td>
+      <td>136.84</td>
+      <td>33.40</td>
+      <td>20.30</td>
+      <td>11.80</td>
+    </tr>
+    <tr>
+      <td>P17</td>
+      <td>106.00</td>
+      <td>144.62</td>
+      <td>38.62</td>
+      <td>21.01</td>
+      <td>14.91</td>
+    </tr>
+    <tr>
+      <td>P18</td>
+      <td>110.46</td>
+      <td>150.20</td>
+      <td>39.74</td>
+      <td>22.44</td>
+      <td>17.30</td>
+    </tr>
+    <tr>
+      <td>P19</td>
+      <td>114.63</td>
+      <td>157.33</td>
+      <td>42.71</td>
+      <td>24.55</td>
+      <td>18.16</td>
+    </tr>
+    <tr>
+      <td>P20</td>
+      <td>122.91</td>
+      <td>161.90</td>
+      <td>38.99</td>
+      <td>22.74</td>
+      <td>16.25</td>
+    </tr>
+    <tr>
+      <td>P21</td>
+      <td>123.26</td>
+      <td>165.87</td>
+      <td>42.61</td>
+      <td>32.71</td>
+      <td>9.64</td>
+    </tr>
+    <tr>
+      <td>P22</td>
+      <td>135.20</td>
+      <td>172.51</td>
+      <td>37.31</td>
+      <td>20.45</td>
+      <td>16.86</td>
+    </tr>
+    <tr>
+      <td>P23</td>
+      <td>140.06</td>
+      <td>177.23</td>
+      <td>37.17</td>
+      <td>22.35</td>
+      <td>14.82</td>
+    </tr>
+    <tr>
+      <td>P24</td>
+      <td>153.10</td>
+      <td>183.28</td>
+      <td>30.18</td>
+      <td>14.15</td>
+      <td>16.03</td>
+    </tr>
+    <tr>
+      <td>P25</td>
+      <td>161.95</td>
+      <td>189.42</td>
+      <td>27.46</td>
+      <td>5.71</td>
+      <td>16.15</td>
+    </tr>
+  </tbody>
+</table>
+            
+            <div class="chart-container">
+                <img src="factory_simulation_charts.png" alt="Factory Simulation Charts">
+            </div>
+            
+            <h2>System State Changes</h2>
+            <div style="max-height: 400px; overflow-y: auto;">
+                <table border="1" class="dataframe table table-striped table-sm">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Time</th>
+      <th>Event</th>
+      <th>Products_In_System</th>
+      <th>Products_Completed</th>
+      <th>Machine1_State</th>
+      <th>Machine2_State</th>
+      <th>Machine3_State</th>
+      <th>Machine1_Queue</th>
+      <th>Machine2_Queue</th>
+      <th>Machine3_Queue</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0.00</td>
+      <td>SIMULATION START</td>
+      <td>0</td>
+      <td>0</td>
+      <td>Idle</td>
+      <td>Idle</td>
+      <td>Idle</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>5.83</td>
+      <td>P1 ARRIVED</td>
+      <td>1</td>
+      <td>0</td>
+      <td>Idle</td>
+      <td>Idle</td>
+      <td>Idle</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>15.19</td>
+      <td>P2 ARRIVED</td>
+      <td>2</td>
+      <td>0</td>
+      <td>Idle</td>
+      <td>Idle</td>
+      <td>Processing</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>17.69</td>
+      <td>P1 FINISHED</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Processing</td>
+      <td>Idle</td>
+      <td>Idle</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>21.15</td>
+      <td>P3 ARRIVED</td>
+      <td>2</td>
+      <td>1</td>
+      <td>Idle</td>
+      <td>Processing</td>
+      <td>Idle</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>28.94</td>
+      <td>P4 ARRIVED</td>
+      <td>3</td>
+      <td>1</td>
+      <td>Idle</td>
+      <td>Processing</td>
+      <td>Processing</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>29.74</td>
+      <td>P2 FINISHED</td>
+      <td>2</td>
+      <td>2</td>
+      <td>Processing</td>
+      <td>Processing</td>
+      <td>Idle</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>31.70</td>
+      <td>P5 ARRIVED</td>
+      <td>3</td>
+      <td>2</td>
+      <td>Processing</td>
+      <td>Idle</td>
+      <td>Processing</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>34.47</td>
+      <td>P6 ARRIVED</td>
+      <td>4</td>
+      <td>2</td>
+      <td>Processing</td>
+      <td>Idle</td>
+      <td>Processing</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>35.56</td>
+      <td>P3 FINISHED</td>
+      <td>3</td>
+      <td>3</td>
+      <td>Processing</td>
+      <td>Processing</td>
+      <td>Idle</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>42.44</td>
+      <td>P7 ARRIVED</td>
+      <td>4</td>
+      <td>3</td>
+      <td>Processing</td>
+      <td>Processing</td>
+      <td>Processing</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>42.71</td>
+      <td>P8 ARRIVED</td>
+      <td>5</td>
+      <td>3</td>
+      <td>Processing</td>
+      <td>Processing</td>
+      <td>Processing</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>43.58</td>
+      <td>P4 FINISHED</td>
+      <td>4</td>
+      <td>4</td>
+      <td>Processing</td>
+      <td>Processing</td>
+      <td>Idle</td>
+      <td>2</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>48.83</td>
+      <td>P9 ARRIVED</td>
+      <td>5</td>
+      <td>4</td>
+      <td>Processing</td>
+      <td>Processing</td>
+      <td>Processing</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>52.47</td>
+      <td>P5 FINISHED</td>
+      <td>4</td>
+      <td>5</td>
+      <td>Processing</td>
+      <td>Processing</td>
+      <td>Idle</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>55.75</td>
+      <td>P10 ARRIVED</td>
+      <td>5</td>
+      <td>5</td>
+      <td>Idle</td>
+      <td>Processing</td>
+      <td>Processing</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>57.67</td>
+      <td>P11 ARRIVED</td>
+      <td>6</td>
+      <td>5</td>
+      <td>Idle</td>
+      <td>Processing</td>
+      <td>Processing</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>59.91</td>
+      <td>P12 ARRIVED</td>
+      <td>7</td>
+      <td>5</td>
+      <td>Idle</td>
+      <td>Processing</td>
+      <td>Processing</td>
+      <td>2</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>63.06</td>
+      <td>P6 FINISHED</td>
+      <td>6</td>
+      <td>6</td>
+      <td>Idle</td>
+      <td>Processing</td>
+      <td>Idle</td>
+      <td>3</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>66.14</td>
+      <td>P13 ARRIVED</td>
+      <td>7</td>
+      <td>6</td>
+      <td>Processing</td>
+      <td>Processing</td>
+      <td>Processing</td>
+      <td>3</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>69.26</td>
+      <td>P7 FINISHED</td>
+      <td>6</td>
+      <td>7</td>
+      <td>Processing</td>
+      <td>Processing</td>
+      <td>Idle</td>
+      <td>4</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>77.45</td>
+      <td>P8 FINISHED</td>
+      <td>5</td>
+      <td>8</td>
+      <td>Processing</td>
+      <td>Processing</td>
+      <td>Idle</td>
+      <td>2</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>79.66</td>
+      <td>P14 ARRIVED</td>
+      <td>6</td>
+      <td>8</td>
+      <td>Processing</td>
+      <td>Failed</td>
+      <td>Processing</td>
+      <td>2</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>82.11</td>
+      <td>P9 FINISHED</td>
+      <td>5</td>
+      <td>9</td>
+      <td>Processing</td>
+      <td>Failed</td>
+      <td>Idle</td>
+      <td>2</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>82.68</td>
+      <td>P15 ARRIVED</td>
+      <td>6</td>
+      <td>9</td>
+      <td>Processing</td>
+      <td>Failed</td>
+      <td>Idle</td>
+      <td>2</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>103.44</td>
+      <td>P16 ARRIVED</td>
+      <td>7</td>
+      <td>9</td>
+      <td>Processing</td>
+      <td>Processing</td>
+      <td>Processing</td>
+      <td>2</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>103.92</td>
+      <td>P10 FINISHED</td>
+      <td>6</td>
+      <td>10</td>
+      <td>Processing</td>
+      <td>Processing</td>
+      <td>Idle</td>
+      <td>3</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>106.00</td>
+      <td>P17 ARRIVED</td>
+      <td>7</td>
+      <td>10</td>
+      <td>Processing</td>
+      <td>Processing</td>
+      <td>Processing</td>
+      <td>2</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>108.66</td>
+      <td>P11 FINISHED</td>
+      <td>6</td>
+      <td>11</td>
+      <td>Processing</td>
+      <td>Processing</td>
+      <td>Idle</td>
+      <td>3</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>110.46</td>
+      <td>P18 ARRIVED</td>
+      <td>7</td>
+      <td>11</td>
+      <td>Processing</td>
+      <td>Processing</td>
+      <td>Processing</td>
+      <td>3</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>112.74</td>
+      <td>P12 FINISHED</td>
+      <td>6</td>
+      <td>12</td>
+      <td>Processing</td>
+      <td>Processing</td>
+      <td>Idle</td>
+      <td>3</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>114.63</td>
+      <td>P19 ARRIVED</td>
+      <td>7</td>
+      <td>12</td>
+      <td>Processing</td>
+      <td>Processing</td>
+      <td>Processing</td>
+      <td>3</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>118.52</td>
+      <td>P13 FINISHED</td>
+      <td>6</td>
+      <td>13</td>
+      <td>Processing</td>
+      <td>Processing</td>
+      <td>Idle</td>
+      <td>3</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>121.10</td>
+      <td>P14 FINISHED</td>
+      <td>5</td>
+      <td>14</td>
+      <td>Processing</td>
+      <td>Processing</td>
+      <td>Idle</td>
+      <td>3</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>122.91</td>
+      <td>P20 ARRIVED</td>
+      <td>6</td>
+      <td>14</td>
+      <td>Processing</td>
+      <td>Processing</td>
+      <td>Idle</td>
+      <td>2</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>123.26</td>
+      <td>P21 ARRIVED</td>
+      <td>7</td>
+      <td>14</td>
+      <td>Processing</td>
+      <td>Processing</td>
+      <td>Idle</td>
+      <td>3</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>132.60</td>
+      <td>P15 FINISHED</td>
+      <td>6</td>
+      <td>15</td>
+      <td>Processing</td>
+      <td>Processing</td>
+      <td>Idle</td>
+      <td>2</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>135.20</td>
+      <td>P22 ARRIVED</td>
+      <td>7</td>
+      <td>15</td>
+      <td>Processing</td>
+      <td>Processing</td>
+      <td>Idle</td>
+      <td>2</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>136.84</td>
+      <td>P16 FINISHED</td>
+      <td>6</td>
+      <td>16</td>
+      <td>Processing</td>
+      <td>Processing</td>
+      <td>Idle</td>
+      <td>2</td>
+      <td>2</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>140.06</td>
+      <td>P23 ARRIVED</td>
+      <td>7</td>
+      <td>16</td>
+      <td>Processing</td>
+      <td>Processing</td>
+      <td>Failed</td>
+      <td>2</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>144.62</td>
+      <td>P17 FINISHED</td>
+      <td>6</td>
+      <td>17</td>
+      <td>Processing</td>
+      <td>Processing</td>
+      <td>Idle</td>
+      <td>2</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>150.20</td>
+      <td>P18 FINISHED</td>
+      <td>5</td>
+      <td>18</td>
+      <td>Processing</td>
+      <td>Processing</td>
+      <td>Idle</td>
+      <td>1</td>
+      <td>2</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>153.10</td>
+      <td>P24 ARRIVED</td>
+      <td>6</td>
+      <td>18</td>
+      <td>Processing</td>
+      <td>Processing</td>
+      <td>Processing</td>
+      <td>0</td>
+      <td>2</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>157.33</td>
+      <td>P19 FINISHED</td>
+      <td>5</td>
+      <td>19</td>
+      <td>Processing</td>
+      <td>Processing</td>
+      <td>Idle</td>
+      <td>0</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>161.90</td>
+      <td>P20 FINISHED</td>
+      <td>4</td>
+      <td>20</td>
+      <td>Processing</td>
+      <td>Processing</td>
+      <td>Idle</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>161.95</td>
+      <td>P25 ARRIVED</td>
+      <td>5</td>
+      <td>20</td>
+      <td>Processing</td>
+      <td>Processing</td>
+      <td>Processing</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>163.04</td>
+      <td>P26 ARRIVED</td>
+      <td>6</td>
+      <td>20</td>
+      <td>Processing</td>
+      <td>Processing</td>
+      <td>Processing</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>165.87</td>
+      <td>P21 FINISHED</td>
+      <td>5</td>
+      <td>21</td>
+      <td>Processing</td>
+      <td>Processing</td>
+      <td>Idle</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>170.20</td>
+      <td>P27 ARRIVED</td>
+      <td>6</td>
+      <td>21</td>
+      <td>Processing</td>
+      <td>Processing</td>
+      <td>Processing</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>171.58</td>
+      <td>P28 ARRIVED</td>
+      <td>7</td>
+      <td>21</td>
+      <td>Processing</td>
+      <td>Processing</td>
+      <td>Processing</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>172.51</td>
+      <td>P22 FINISHED</td>
+      <td>6</td>
+      <td>22</td>
+      <td>Processing</td>
+      <td>Processing</td>
+      <td>Idle</td>
+      <td>1</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>177.23</td>
+      <td>P23 FINISHED</td>
+      <td>5</td>
+      <td>23</td>
+      <td>Processing</td>
+      <td>Processing</td>
+      <td>Idle</td>
+      <td>0</td>
+      <td>2</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>178.88</td>
+      <td>P29 ARRIVED</td>
+      <td>6</td>
+      <td>23</td>
+      <td>Processing</td>
+      <td>Failed</td>
+      <td>Processing</td>
+      <td>0</td>
+      <td>2</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>181.01</td>
+      <td>P30 ARRIVED</td>
+      <td>7</td>
+      <td>23</td>
+      <td>Idle</td>
+      <td>Failed</td>
+      <td>Processing</td>
+      <td>1</td>
+      <td>2</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>183.28</td>
+      <td>P24 FINISHED</td>
+      <td>6</td>
+      <td>24</td>
+      <td>Processing</td>
+      <td>Failed</td>
+      <td>Idle</td>
+      <td>1</td>
+      <td>3</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>189.42</td>
+      <td>P25 FINISHED</td>
+      <td>5</td>
+      <td>25</td>
+      <td>Idle</td>
+      <td>Processing</td>
+      <td>Idle</td>
+      <td>0</td>
+      <td>4</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>193.81</td>
+      <td>P31 ARRIVED</td>
+      <td>6</td>
+      <td>25</td>
+      <td>Idle</td>
+      <td>Processing</td>
+      <td>Failed</td>
+      <td>0</td>
+      <td>3</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+            </div>
+            
+            <h2>Detailed Event Log</h2>
+            <div style="max-height: 400px; overflow-y: auto;">
+                <table border="1" class="dataframe table table-striped table-sm">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Time</th>
+      <th>Event</th>
+      <th>Machine</th>
+      <th>Product</th>
+      <th>Type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>5.83</td>
+      <td>P1 ARRIVED</td>
+      <td>None</td>
+      <td>P1</td>
+      <td>ARRIVE</td>
+    </tr>
+    <tr>
+      <td>15.19</td>
+      <td>P2 ARRIVED</td>
+      <td>None</td>
+      <td>P2</td>
+      <td>ARRIVE</td>
+    </tr>
+    <tr>
+      <td>17.69</td>
+      <td>P1 FINISHED, total time: 11.86</td>
+      <td>None</td>
+      <td>P1</td>
+      <td>COMPLETE</td>
+    </tr>
+    <tr>
+      <td>21.15</td>
+      <td>P3 ARRIVED</td>
+      <td>None</td>
+      <td>P3</td>
+      <td>ARRIVE</td>
+    </tr>
+    <tr>
+      <td>28.94</td>
+      <td>P4 ARRIVED</td>
+      <td>None</td>
+      <td>P4</td>
+      <td>ARRIVE</td>
+    </tr>
+    <tr>
+      <td>29.74</td>
+      <td>P2 FINISHED, total time: 14.55</td>
+      <td>None</td>
+      <td>P2</td>
+      <td>COMPLETE</td>
+    </tr>
+    <tr>
+      <td>31.70</td>
+      <td>P5 ARRIVED</td>
+      <td>None</td>
+      <td>P5</td>
+      <td>ARRIVE</td>
+    </tr>
+    <tr>
+      <td>34.47</td>
+      <td>P6 ARRIVED</td>
+      <td>None</td>
+      <td>P6</td>
+      <td>ARRIVE</td>
+    </tr>
+    <tr>
+      <td>35.56</td>
+      <td>P3 FINISHED, total time: 14.41</td>
+      <td>None</td>
+      <td>P3</td>
+      <td>COMPLETE</td>
+    </tr>
+    <tr>
+      <td>42.44</td>
+      <td>P7 ARRIVED</td>
+      <td>None</td>
+      <td>P7</td>
+      <td>ARRIVE</td>
+    </tr>
+    <tr>
+      <td>42.71</td>
+      <td>P8 ARRIVED</td>
+      <td>None</td>
+      <td>P8</td>
+      <td>ARRIVE</td>
+    </tr>
+    <tr>
+      <td>43.58</td>
+      <td>P4 FINISHED, total time: 14.64</td>
+      <td>None</td>
+      <td>P4</td>
+      <td>COMPLETE</td>
+    </tr>
+    <tr>
+      <td>48.83</td>
+      <td>P9 ARRIVED</td>
+      <td>None</td>
+      <td>P9</td>
+      <td>ARRIVE</td>
+    </tr>
+    <tr>
+      <td>52.47</td>
+      <td>P5 FINISHED, total time: 20.78</td>
+      <td>None</td>
+      <td>P5</td>
+      <td>COMPLETE</td>
+    </tr>
+    <tr>
+      <td>55.75</td>
+      <td>P10 ARRIVED</td>
+      <td>None</td>
+      <td>P10</td>
+      <td>ARRIVE</td>
+    </tr>
+    <tr>
+      <td>57.67</td>
+      <td>P11 ARRIVED</td>
+      <td>None</td>
+      <td>P11</td>
+      <td>ARRIVE</td>
+    </tr>
+    <tr>
+      <td>59.91</td>
+      <td>P12 ARRIVED</td>
+      <td>None</td>
+      <td>P12</td>
+      <td>ARRIVE</td>
+    </tr>
+    <tr>
+      <td>63.06</td>
+      <td>P6 FINISHED, total time: 28.58</td>
+      <td>None</td>
+      <td>P6</td>
+      <td>COMPLETE</td>
+    </tr>
+    <tr>
+      <td>66.14</td>
+      <td>P13 ARRIVED</td>
+      <td>None</td>
+      <td>P13</td>
+      <td>ARRIVE</td>
+    </tr>
+    <tr>
+      <td>69.26</td>
+      <td>P7 FINISHED, total time: 26.82</td>
+      <td>None</td>
+      <td>P7</td>
+      <td>COMPLETE</td>
+    </tr>
+    <tr>
+      <td>77.45</td>
+      <td>P8 FINISHED, total time: 34.74</td>
+      <td>None</td>
+      <td>P8</td>
+      <td>COMPLETE</td>
+    </tr>
+    <tr>
+      <td>79.66</td>
+      <td>P14 ARRIVED</td>
+      <td>None</td>
+      <td>P14</td>
+      <td>ARRIVE</td>
+    </tr>
+    <tr>
+      <td>82.11</td>
+      <td>P9 FINISHED, total time: 33.28</td>
+      <td>None</td>
+      <td>P9</td>
+      <td>COMPLETE</td>
+    </tr>
+    <tr>
+      <td>82.68</td>
+      <td>P15 ARRIVED</td>
+      <td>None</td>
+      <td>P15</td>
+      <td>ARRIVE</td>
+    </tr>
+    <tr>
+      <td>103.44</td>
+      <td>P16 ARRIVED</td>
+      <td>None</td>
+      <td>P16</td>
+      <td>ARRIVE</td>
+    </tr>
+    <tr>
+      <td>103.92</td>
+      <td>P10 FINISHED, total time: 48.17</td>
+      <td>None</td>
+      <td>P10</td>
+      <td>COMPLETE</td>
+    </tr>
+    <tr>
+      <td>106.00</td>
+      <td>P17 ARRIVED</td>
+      <td>None</td>
+      <td>P17</td>
+      <td>ARRIVE</td>
+    </tr>
+    <tr>
+      <td>108.66</td>
+      <td>P11 FINISHED, total time: 50.98</td>
+      <td>None</td>
+      <td>P11</td>
+      <td>COMPLETE</td>
+    </tr>
+    <tr>
+      <td>110.46</td>
+      <td>P18 ARRIVED</td>
+      <td>None</td>
+      <td>P18</td>
+      <td>ARRIVE</td>
+    </tr>
+    <tr>
+      <td>112.74</td>
+      <td>P12 FINISHED, total time: 52.83</td>
+      <td>None</td>
+      <td>P12</td>
+      <td>COMPLETE</td>
+    </tr>
+    <tr>
+      <td>114.63</td>
+      <td>P19 ARRIVED</td>
+      <td>None</td>
+      <td>P19</td>
+      <td>ARRIVE</td>
+    </tr>
+    <tr>
+      <td>118.52</td>
+      <td>P13 FINISHED, total time: 52.39</td>
+      <td>None</td>
+      <td>P13</td>
+      <td>COMPLETE</td>
+    </tr>
+    <tr>
+      <td>121.10</td>
+      <td>P14 FINISHED, total time: 41.44</td>
+      <td>None</td>
+      <td>P14</td>
+      <td>COMPLETE</td>
+    </tr>
+    <tr>
+      <td>122.91</td>
+      <td>P20 ARRIVED</td>
+      <td>None</td>
+      <td>P20</td>
+      <td>ARRIVE</td>
+    </tr>
+    <tr>
+      <td>123.26</td>
+      <td>P21 ARRIVED</td>
+      <td>None</td>
+      <td>P21</td>
+      <td>ARRIVE</td>
+    </tr>
+    <tr>
+      <td>132.60</td>
+      <td>P15 FINISHED, total time: 49.93</td>
+      <td>None</td>
+      <td>P15</td>
+      <td>COMPLETE</td>
+    </tr>
+    <tr>
+      <td>135.20</td>
+      <td>P22 ARRIVED</td>
+      <td>None</td>
+      <td>P22</td>
+      <td>ARRIVE</td>
+    </tr>
+    <tr>
+      <td>136.84</td>
+      <td>P16 FINISHED, total time: 33.40</td>
+      <td>None</td>
+      <td>P16</td>
+      <td>COMPLETE</td>
+    </tr>
+    <tr>
+      <td>140.06</td>
+      <td>P23 ARRIVED</td>
+      <td>None</td>
+      <td>P23</td>
+      <td>ARRIVE</td>
+    </tr>
+    <tr>
+      <td>144.62</td>
+      <td>P17 FINISHED, total time: 38.62</td>
+      <td>None</td>
+      <td>P17</td>
+      <td>COMPLETE</td>
+    </tr>
+    <tr>
+      <td>150.20</td>
+      <td>P18 FINISHED, total time: 39.74</td>
+      <td>None</td>
+      <td>P18</td>
+      <td>COMPLETE</td>
+    </tr>
+    <tr>
+      <td>153.10</td>
+      <td>P24 ARRIVED</td>
+      <td>None</td>
+      <td>P24</td>
+      <td>ARRIVE</td>
+    </tr>
+    <tr>
+      <td>157.33</td>
+      <td>P19 FINISHED, total time: 42.71</td>
+      <td>None</td>
+      <td>P19</td>
+      <td>COMPLETE</td>
+    </tr>
+    <tr>
+      <td>161.90</td>
+      <td>P20 FINISHED, total time: 38.99</td>
+      <td>None</td>
+      <td>P20</td>
+      <td>COMPLETE</td>
+    </tr>
+    <tr>
+      <td>161.95</td>
+      <td>P25 ARRIVED</td>
+      <td>None</td>
+      <td>P25</td>
+      <td>ARRIVE</td>
+    </tr>
+    <tr>
+      <td>163.04</td>
+      <td>P26 ARRIVED</td>
+      <td>None</td>
+      <td>P26</td>
+      <td>ARRIVE</td>
+    </tr>
+    <tr>
+      <td>165.87</td>
+      <td>P21 FINISHED, total time: 42.61</td>
+      <td>None</td>
+      <td>P21</td>
+      <td>COMPLETE</td>
+    </tr>
+    <tr>
+      <td>170.20</td>
+      <td>P27 ARRIVED</td>
+      <td>None</td>
+      <td>P27</td>
+      <td>ARRIVE</td>
+    </tr>
+    <tr>
+      <td>171.58</td>
+      <td>P28 ARRIVED</td>
+      <td>None</td>
+      <td>P28</td>
+      <td>ARRIVE</td>
+    </tr>
+    <tr>
+      <td>172.51</td>
+      <td>P22 FINISHED, total time: 37.31</td>
+      <td>None</td>
+      <td>P22</td>
+      <td>COMPLETE</td>
+    </tr>
+    <tr>
+      <td>177.23</td>
+      <td>P23 FINISHED, total time: 37.17</td>
+      <td>None</td>
+      <td>P23</td>
+      <td>COMPLETE</td>
+    </tr>
+    <tr>
+      <td>178.88</td>
+      <td>P29 ARRIVED</td>
+      <td>None</td>
+      <td>P29</td>
+      <td>ARRIVE</td>
+    </tr>
+    <tr>
+      <td>181.01</td>
+      <td>P30 ARRIVED</td>
+      <td>None</td>
+      <td>P30</td>
+      <td>ARRIVE</td>
+    </tr>
+    <tr>
+      <td>183.28</td>
+      <td>P24 FINISHED, total time: 30.18</td>
+      <td>None</td>
+      <td>P24</td>
+      <td>COMPLETE</td>
+    </tr>
+    <tr>
+      <td>189.42</td>
+      <td>P25 FINISHED, total time: 27.46</td>
+      <td>None</td>
+      <td>P25</td>
+      <td>COMPLETE</td>
+    </tr>
+    <tr>
+      <td>193.81</td>
+      <td>P31 ARRIVED</td>
+      <td>None</td>
+      <td>P31</td>
+      <td>ARRIVE</td>
+    </tr>
+  </tbody>
+</table>
+            </div>
+            
+        </div>
+    </body>
+    </html>
+    
