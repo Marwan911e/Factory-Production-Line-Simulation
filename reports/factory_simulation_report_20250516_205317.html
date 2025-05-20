@@ -1,0 +1,908 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Factory Production Line Simulation Report</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <style>
+            body { 
+                font-family: Arial, sans-serif; 
+                margin: 20px;
+                padding-bottom: 50px;
+                color: #333;
+            }
+            .header {
+                text-align: center;
+                margin-bottom: 30px;
+                padding: 30px;
+                background-color: #f0f2f5;
+                border-radius: 8px;
+                box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            }
+            .section {
+                margin-bottom: 40px;
+                padding: 25px;
+                background-color: #fff;
+                border-radius: 8px;
+                box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+            }
+            .highlight-box {
+                background-color: #f8f9fa;
+                border-left: 5px solid #0d6efd;
+                padding: 20px;
+                margin: 25px 0;
+                border-radius: 6px;
+            }
+            .alert-box {
+                padding: 15px;
+                margin: 15px 0;
+                border-radius: 6px;
+            }
+            .alert-box.bottleneck {
+                background-color: rgba(255, 0, 0, 0.1);
+                border-left: 5px solid #dc3545;
+            }
+            .alert-box.failure {
+                background-color: rgba(255, 193, 7, 0.1);
+                border-left: 5px solid #ffc107;
+            }
+            .table-container {
+                overflow-x: auto;
+                margin: 20px 0;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+                border-radius: 6px;
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+            th, td {
+                padding: 12px 15px;
+                text-align: left;
+            }
+            .key-metric {
+                border-radius: 8px;
+                padding: 25px;
+                margin: 15px;
+                text-align: center;
+                background-color: #f8f9fa;
+                box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+                transition: all 0.2s ease;
+            }
+            .key-metric:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+            }
+            .key-metric h3 {
+                margin: 0;
+                font-size: 2.5rem;
+                font-weight: 600;
+                color: #0d6efd;
+            }
+            .key-metric p {
+                margin: 10px 0 0 0;
+                color: #6c757d;
+                font-weight: 500;
+            }
+            .recommendation {
+                background-color: #e8f4ff;
+                border-left: 5px solid #0d6efd;
+                padding: 15px;
+                margin: 20px 0;
+                border-radius: 6px;
+            }
+            img.chart {
+                width: 100%;
+                height: auto;
+                border-radius: 8px;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+                margin: 15px 0;
+            }
+            .info-banner {
+                background-color: #e8f4ff;
+                padding: 10px 15px;
+                margin: 10px 0;
+                border-radius: 6px;
+                font-weight: 500;
+                color: #0d6efd;
+            }
+            .formula-box {
+                background-color: #f8f9fa;
+                padding: 10px;
+                margin: 10px 0;
+                border-radius: 6px;
+                border-left: 5px solid #6c757d;
+                font-family: monospace;
+            }
+            @media print {
+                body { 
+                    margin: 0;
+                    padding: 0;
+                }
+                .section {
+                    page-break-inside: avoid;
+                    box-shadow: none;
+                    border: 1px solid #ddd;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="header">
+            <h1>Factory Production Line Simulation Report</h1>
+            <p class="text-muted">Generated on 2025-05-16 20:53:19</p>
+            <div class="info-banner">
+                <p>Simulation run with 100 products</p>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Executive Summary</h2>
+            <div class="highlight-box">
+                <p>This simulation models a factory production line with three machines in series (M1, M2, M3). 
+                Each machine processes products sequentially, and machines can experience random failures.</p>
+                
+                <div class="alert-box bottleneck">
+                    <h4>⚠️ Bottleneck Identified: <strong>M1</strong></h4>
+                    <p>This machine has the highest utilization (73.7%) and is limiting the overall system throughput.</p>
+                </div>
+                
+                <div class="alert-box failure">
+                    <h4>⚙️ Reliability Issue: <strong>M3</strong></h4>
+                    <p>This machine experienced the most failures during the simulation, with 18 breakdowns.</p>
+                </div>
+            </div>
+            
+            <div class="row mt-4">
+                <div class="col-md-3">
+                    <div class="key-metric">
+                        <h3>0.0909</h3>
+                        <p>Products per Time Unit</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="key-metric">
+                        <h3>242.6s</h3>
+                        <p>Average Lead Time</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="key-metric">
+                        <h3>9.1%</h3>
+                        <p>System Efficiency</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="key-metric">
+                        <h3>74.9%</h3>
+                        <p>Server Utilization</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Queueing Theory Metrics</h2>
+            <p>This section presents metrics calculated using queueing theory principles.</p>
+            
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <div class="formula-box">
+                        <p>Average Waiting Time = Total time Customer wait in queue / Total number of Customers</p>
+                        <p>Probability (Wait) = number of customer who wait(count) / Total number of customer</p>
+                        <p>Queue length = sum of all in queue / total number of customer</p>
+                        <p>Probability of idle = Total idle time of Server / Total run time in Simulation</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="formula-box">
+                        <p>Average Service Time = Total Service Time / Total number of customer</p>
+                        <p>Average time between arrivals = sum of interarrival times / total number of Customers -1</p>
+                        <p>Average waiting time for those who wait = Total time Customer wait in queue / Total number of Customers who wait(count)</p>
+                        <p>Server Utilization = 1 - probability of idle</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="table-container mt-4">
+                <h5>System-Wide Queueing Metrics</h5>
+                <table border="1" class="dataframe table table-striped table-hover">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Average Waiting Time</th>
+      <th>Probability of Wait</th>
+      <th>Average Queue Length</th>
+      <th>Average Service Time</th>
+      <th>Average Interarrival Time</th>
+      <th>Average Waiting Time (Those Who Wait)</th>
+      <th>Average Time in System</th>
+      <th>Server Utilization</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>216.48</td>
+      <td>0.99</td>
+      <td>6.56</td>
+      <td>21.98</td>
+      <td>6.08</td>
+      <td>218.67</td>
+      <td>242.58</td>
+      <td>0.75</td>
+    </tr>
+  </tbody>
+</table>
+            </div>
+            
+            <p class="mt-4">The chart below shows queueing theory metrics for each individual machine:</p>
+            <img src="queueing_metrics.png" alt="Queueing Theory Metrics by Machine" class="chart">
+            
+            <div class="recommendation">
+                <h4>💡 Queueing Theory Insight:</h4>
+                <p>The probability of wait and queue length metrics help identify where congestion occurs in the system.
+                Machines with high server utilization and long waiting times indicate bottlenecks that should be prioritized for improvement.</p>
+                
+                <h5>Understanding Utilization and Waiting Time:</h5>
+                <p>Even with moderate utilization rates (e.g., 67%), long waiting times can occur. This is because as utilization increases, 
+                waiting times grow exponentially, not linearly:</p>
+                <ul>
+                    <li>At 50% utilization, relative waiting time = 1x</li>
+                    <li>At 67% utilization, relative waiting time = 2x</li>
+                    <li>At 80% utilization, relative waiting time = 4x</li>
+                    <li>At 90% utilization, relative waiting time = 9x</li>
+                    <li>At 95% utilization, relative waiting time = 19x</li>
+                </ul>
+                <p>This explains why bottlenecks form even when machines aren't running at 100% capacity.</p>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Machine Performance Analysis</h2>
+            <p>This chart shows the utilization and availability of each machine. The bottleneck machine is highlighted in red.</p>
+            <img src="machine_chart.png" alt="Machine Performance Chart" class="chart">
+            
+            <div class="recommendation">
+                <h4>💡 Performance Insight:</h4>
+                <p>Machine <strong>M1</strong> is operating at high utilization (73.7%), 
+                indicating it's limiting system throughput. Consider adding capacity to this machine or reducing its processing time.</p>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Wait Time vs. Processing Time</h2>
+            <p>This chart shows the average waiting and processing times for each machine. Longer waiting times indicate potential bottlenecks.</p>
+            <img src="waiting_time_chart.png" alt="Wait Time vs Processing Time Chart" class="chart">
+            
+            <div class="recommendation">
+                <h4>💡 Queue Management Insight:</h4>
+                <p>Products spend significant time waiting for M1. 
+                This confirms that this machine is a bottleneck and should be prioritized for improvement.</p>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Machine Reliability Analysis</h2>
+            <p>This chart shows the uptime and downtime for each machine during the simulation.</p>
+            <img src="machine_status.png" alt="Machine Reliability Chart" class="chart">
+            
+            <div class="recommendation">
+                <h4>💡 Reliability Insight:</h4>
+                <p>Machine <strong>M3</strong> had the most failures. 
+                Improving maintenance or upgrading this machine could increase overall system throughput by reducing downtime.</p>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Sample Comparison</h2>
+            <p>This chart compares key metrics between all simulated products and the products displayed in this report.</p>
+            <img src="comparison_chart.png" alt="Comparison Chart" class="chart">
+            
+            <div class="recommendation">
+                <h4>💡 Sample Insight:</h4>
+                <p>This chart helps verify if the first products shown in this report are representative of the entire simulation.</p>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Product Flow Timeline</h2>
+            <p>This chart shows how products moved through the production line.</p>
+            <img src="timeline_chart.png" alt="Product Timeline Chart" class="chart">
+        </div>
+        
+        <div class="section">
+            <h2>Product Metrics Analysis</h2>
+            <p>This chart provides a detailed breakdown of performance metrics for each product.</p>
+            <img src="product_metrics_chart.png" alt="Product Metrics Chart" class="chart">
+        </div>
+        
+        <div class="section">
+            <h2>Machine Performance Metrics</h2>
+            <div class="table-container">
+                <table border="1" class="dataframe table table-striped table-hover">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Machine</th>
+      <th>Products Processed</th>
+      <th>Utilization (%)</th>
+      <th>Availability (%)</th>
+      <th>Total Downtime</th>
+      <th>Number of Failures</th>
+      <th>Avg Waiting Time</th>
+      <th>Probability of Wait</th>
+      <th>Avg Queue Length</th>
+      <th>Probability of Idle</th>
+      <th>Avg Service Time</th>
+      <th>Avg Wait (Those Who Wait)</th>
+      <th>Server Utilization</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>M1</td>
+      <td>100</td>
+      <td>73.71</td>
+      <td>92.24</td>
+      <td>85.33</td>
+      <td>14</td>
+      <td>168.23</td>
+      <td>0.99</td>
+      <td>15.30</td>
+      <td>0.15</td>
+      <td>8.11</td>
+      <td>169.93</td>
+      <td>0.85</td>
+    </tr>
+    <tr>
+      <td>M2</td>
+      <td>100</td>
+      <td>72.37</td>
+      <td>87.40</td>
+      <td>138.56</td>
+      <td>16</td>
+      <td>35.22</td>
+      <td>0.90</td>
+      <td>3.20</td>
+      <td>0.29</td>
+      <td>7.96</td>
+      <td>39.14</td>
+      <td>0.71</td>
+    </tr>
+    <tr>
+      <td>M3</td>
+      <td>100</td>
+      <td>53.70</td>
+      <td>82.42</td>
+      <td>193.35</td>
+      <td>18</td>
+      <td>13.03</td>
+      <td>0.60</td>
+      <td>1.18</td>
+      <td>0.31</td>
+      <td>5.91</td>
+      <td>21.72</td>
+      <td>0.69</td>
+    </tr>
+  </tbody>
+</table>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>System Performance Metrics</h2>
+            <div class="table-container">
+                <table border="1" class="dataframe table table-striped table-hover">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Average Waiting Time</th>
+      <th>Average Service Time</th>
+      <th>Average Lead Time</th>
+      <th>Waiting Time Percentage</th>
+      <th>Throughput (products/time unit)</th>
+      <th>System Efficiency (%)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>216.48</td>
+      <td>21.98</td>
+      <td>242.58</td>
+      <td>89.24</td>
+      <td>0.09</td>
+      <td>9.06</td>
+    </tr>
+  </tbody>
+</table>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Product Metrics</h2>
+            <p>Showing the first 20 products out of 100 total simulated products.</p>
+            <div class="table-container">
+                <table border="1" class="dataframe table table-striped table-hover">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Product</th>
+      <th>Arrival</th>
+      <th>Completion</th>
+      <th>Lead Time</th>
+      <th>Total Waiting Time</th>
+      <th>Total Service Time</th>
+      <th>M1 Queue Time</th>
+      <th>M1 Processing Time</th>
+      <th>M2 Queue Time</th>
+      <th>M2 Processing Time</th>
+      <th>M3 Queue Time</th>
+      <th>M3 Processing Time</th>
+      <th>M1 Time</th>
+      <th>M2 Time</th>
+      <th>M3 Time</th>
+      <th>System Time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Product-0</td>
+      <td>1.57</td>
+      <td>22.17</td>
+      <td>20.61</td>
+      <td>0.00</td>
+      <td>17.61</td>
+      <td>0.00</td>
+      <td>7.51</td>
+      <td>0.00</td>
+      <td>7.90</td>
+      <td>0.00</td>
+      <td>2.20</td>
+      <td>7.51</td>
+      <td>10.90</td>
+      <td>2.20</td>
+      <td>20.61</td>
+    </tr>
+    <tr>
+      <td>Product-1</td>
+      <td>5.29</td>
+      <td>30.90</td>
+      <td>25.61</td>
+      <td>3.79</td>
+      <td>16.82</td>
+      <td>3.79</td>
+      <td>8.75</td>
+      <td>0.00</td>
+      <td>7.25</td>
+      <td>0.00</td>
+      <td>0.81</td>
+      <td>13.75</td>
+      <td>7.25</td>
+      <td>0.81</td>
+      <td>25.61</td>
+    </tr>
+    <tr>
+      <td>Product-2</td>
+      <td>6.06</td>
+      <td>45.70</td>
+      <td>39.64</td>
+      <td>16.78</td>
+      <td>22.87</td>
+      <td>16.78</td>
+      <td>10.16</td>
+      <td>0.00</td>
+      <td>8.44</td>
+      <td>0.00</td>
+      <td>4.27</td>
+      <td>10.16</td>
+      <td>8.44</td>
+      <td>4.27</td>
+      <td>39.64</td>
+    </tr>
+    <tr>
+      <td>Product-3</td>
+      <td>8.30</td>
+      <td>59.16</td>
+      <td>50.86</td>
+      <td>25.18</td>
+      <td>25.68</td>
+      <td>24.70</td>
+      <td>7.95</td>
+      <td>0.49</td>
+      <td>7.45</td>
+      <td>0.00</td>
+      <td>10.28</td>
+      <td>7.95</td>
+      <td>7.45</td>
+      <td>10.28</td>
+      <td>50.86</td>
+    </tr>
+    <tr>
+      <td>Product-4</td>
+      <td>11.47</td>
+      <td>72.86</td>
+      <td>61.40</td>
+      <td>29.47</td>
+      <td>23.92</td>
+      <td>29.47</td>
+      <td>8.18</td>
+      <td>0.00</td>
+      <td>6.72</td>
+      <td>0.00</td>
+      <td>9.03</td>
+      <td>8.18</td>
+      <td>14.72</td>
+      <td>9.03</td>
+      <td>61.40</td>
+    </tr>
+    <tr>
+      <td>Product-5</td>
+      <td>19.23</td>
+      <td>74.90</td>
+      <td>55.67</td>
+      <td>37.28</td>
+      <td>18.40</td>
+      <td>29.89</td>
+      <td>8.13</td>
+      <td>6.59</td>
+      <td>8.23</td>
+      <td>0.80</td>
+      <td>2.04</td>
+      <td>8.13</td>
+      <td>8.23</td>
+      <td>2.04</td>
+      <td>55.67</td>
+    </tr>
+    <tr>
+      <td>Product-6</td>
+      <td>25.75</td>
+      <td>84.10</td>
+      <td>58.35</td>
+      <td>40.08</td>
+      <td>18.27</td>
+      <td>31.50</td>
+      <td>6.22</td>
+      <td>8.59</td>
+      <td>8.74</td>
+      <td>0.00</td>
+      <td>3.31</td>
+      <td>6.22</td>
+      <td>8.74</td>
+      <td>3.31</td>
+      <td>58.35</td>
+    </tr>
+    <tr>
+      <td>Product-7</td>
+      <td>36.89</td>
+      <td>89.00</td>
+      <td>52.11</td>
+      <td>33.01</td>
+      <td>18.10</td>
+      <td>26.58</td>
+      <td>9.89</td>
+      <td>6.43</td>
+      <td>7.90</td>
+      <td>0.00</td>
+      <td>0.31</td>
+      <td>10.89</td>
+      <td>7.90</td>
+      <td>0.31</td>
+      <td>52.11</td>
+    </tr>
+    <tr>
+      <td>Product-8</td>
+      <td>39.04</td>
+      <td>101.29</td>
+      <td>62.25</td>
+      <td>41.23</td>
+      <td>21.02</td>
+      <td>35.33</td>
+      <td>8.43</td>
+      <td>5.90</td>
+      <td>9.16</td>
+      <td>0.00</td>
+      <td>3.43</td>
+      <td>8.43</td>
+      <td>9.16</td>
+      <td>3.43</td>
+      <td>62.25</td>
+    </tr>
+    <tr>
+      <td>Product-9</td>
+      <td>41.62</td>
+      <td>108.98</td>
+      <td>67.35</td>
+      <td>48.93</td>
+      <td>18.43</td>
+      <td>41.17</td>
+      <td>7.31</td>
+      <td>7.76</td>
+      <td>9.02</td>
+      <td>0.00</td>
+      <td>2.10</td>
+      <td>7.31</td>
+      <td>9.02</td>
+      <td>2.10</td>
+      <td>67.35</td>
+    </tr>
+    <tr>
+      <td>Product-10</td>
+      <td>48.96</td>
+      <td>119.04</td>
+      <td>70.08</td>
+      <td>52.19</td>
+      <td>17.90</td>
+      <td>41.14</td>
+      <td>5.74</td>
+      <td>11.04</td>
+      <td>8.33</td>
+      <td>0.00</td>
+      <td>3.83</td>
+      <td>5.74</td>
+      <td>8.33</td>
+      <td>3.83</td>
+      <td>70.08</td>
+    </tr>
+    <tr>
+      <td>Product-11</td>
+      <td>57.76</td>
+      <td>169.68</td>
+      <td>111.92</td>
+      <td>48.12</td>
+      <td>20.80</td>
+      <td>38.08</td>
+      <td>9.32</td>
+      <td>10.05</td>
+      <td>9.03</td>
+      <td>0.00</td>
+      <td>2.44</td>
+      <td>9.32</td>
+      <td>9.03</td>
+      <td>45.44</td>
+      <td>111.92</td>
+    </tr>
+    <tr>
+      <td>Product-12</td>
+      <td>58.78</td>
+      <td>172.54</td>
+      <td>113.76</td>
+      <td>93.18</td>
+      <td>20.57</td>
+      <td>46.38</td>
+      <td>8.63</td>
+      <td>10.45</td>
+      <td>9.09</td>
+      <td>36.36</td>
+      <td>2.86</td>
+      <td>8.63</td>
+      <td>9.09</td>
+      <td>2.86</td>
+      <td>113.76</td>
+    </tr>
+    <tr>
+      <td>Product-13</td>
+      <td>65.59</td>
+      <td>175.17</td>
+      <td>109.58</td>
+      <td>89.36</td>
+      <td>20.22</td>
+      <td>48.20</td>
+      <td>9.16</td>
+      <td>10.38</td>
+      <td>8.43</td>
+      <td>30.79</td>
+      <td>2.63</td>
+      <td>9.16</td>
+      <td>8.43</td>
+      <td>2.63</td>
+      <td>109.58</td>
+    </tr>
+    <tr>
+      <td>Product-14</td>
+      <td>69.19</td>
+      <td>179.41</td>
+      <td>110.23</td>
+      <td>87.59</td>
+      <td>22.63</td>
+      <td>53.76</td>
+      <td>8.58</td>
+      <td>10.22</td>
+      <td>9.81</td>
+      <td>23.60</td>
+      <td>4.24</td>
+      <td>8.58</td>
+      <td>9.81</td>
+      <td>4.24</td>
+      <td>110.23</td>
+    </tr>
+    <tr>
+      <td>Product-15</td>
+      <td>86.34</td>
+      <td>185.67</td>
+      <td>99.34</td>
+      <td>74.45</td>
+      <td>24.89</td>
+      <td>45.19</td>
+      <td>10.34</td>
+      <td>9.70</td>
+      <td>8.29</td>
+      <td>19.55</td>
+      <td>6.26</td>
+      <td>10.34</td>
+      <td>8.29</td>
+      <td>6.26</td>
+      <td>99.34</td>
+    </tr>
+    <tr>
+      <td>Product-16</td>
+      <td>88.29</td>
+      <td>189.79</td>
+      <td>101.50</td>
+      <td>80.07</td>
+      <td>21.44</td>
+      <td>53.58</td>
+      <td>8.90</td>
+      <td>9.10</td>
+      <td>8.42</td>
+      <td>17.39</td>
+      <td>4.11</td>
+      <td>8.90</td>
+      <td>8.42</td>
+      <td>4.11</td>
+      <td>101.50</td>
+    </tr>
+    <tr>
+      <td>Product-17</td>
+      <td>106.73</td>
+      <td>195.75</td>
+      <td>89.02</td>
+      <td>49.57</td>
+      <td>21.45</td>
+      <td>44.04</td>
+      <td>7.79</td>
+      <td>0.00</td>
+      <td>7.70</td>
+      <td>5.53</td>
+      <td>5.96</td>
+      <td>7.79</td>
+      <td>7.70</td>
+      <td>5.96</td>
+      <td>89.02</td>
+    </tr>
+    <tr>
+      <td>Product-18</td>
+      <td>111.69</td>
+      <td>198.63</td>
+      <td>86.94</td>
+      <td>69.25</td>
+      <td>17.69</td>
+      <td>64.87</td>
+      <td>6.56</td>
+      <td>1.14</td>
+      <td>8.24</td>
+      <td>3.24</td>
+      <td>2.89</td>
+      <td>6.56</td>
+      <td>8.24</td>
+      <td>2.89</td>
+      <td>86.94</td>
+    </tr>
+    <tr>
+      <td>Product-19</td>
+      <td>111.99</td>
+      <td>224.66</td>
+      <td>112.66</td>
+      <td>71.13</td>
+      <td>23.54</td>
+      <td>71.13</td>
+      <td>9.23</td>
+      <td>0.00</td>
+      <td>7.69</td>
+      <td>0.00</td>
+      <td>6.61</td>
+      <td>27.23</td>
+      <td>7.69</td>
+      <td>6.61</td>
+      <td>112.66</td>
+    </tr>
+  </tbody>
+</table>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Simulation Event Log (First 20 Events)</h2>
+            <div class="table-container">
+                <table border="1" class="dataframe table table-striped table-hover">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Time</th>
+      <th>Event</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1.57</td>
+      <td>Product-0 ARRIVED</td>
+    </tr>
+    <tr>
+      <td>1.57</td>
+      <td>Product-0 START M1</td>
+    </tr>
+    <tr>
+      <td>5.29</td>
+      <td>Product-1 ARRIVED</td>
+    </tr>
+    <tr>
+      <td>6.06</td>
+      <td>Product-2 ARRIVED</td>
+    </tr>
+    <tr>
+      <td>8.30</td>
+      <td>Product-3 ARRIVED</td>
+    </tr>
+    <tr>
+      <td>9.08</td>
+      <td>Product-0 END M1</td>
+    </tr>
+    <tr>
+      <td>9.08</td>
+      <td>Product-0 START M2</td>
+    </tr>
+    <tr>
+      <td>9.08</td>
+      <td>Product-1 START M1</td>
+    </tr>
+    <tr>
+      <td>11.47</td>
+      <td>Product-4 ARRIVED</td>
+    </tr>
+    <tr>
+      <td>13.19</td>
+      <td>M2 FAILED</td>
+    </tr>
+    <tr>
+      <td>14.08</td>
+      <td>Product-0 PAUSED M2 due to failure</td>
+    </tr>
+    <tr>
+      <td>15.08</td>
+      <td>Product-0 PAUSED M2 due to failure</td>
+    </tr>
+    <tr>
+      <td>15.73</td>
+      <td>M1 FAILED</td>
+    </tr>
+    <tr>
+      <td>16.08</td>
+      <td>Product-0 PAUSED M2 due to failure</td>
+    </tr>
+    <tr>
+      <td>16.08</td>
+      <td>Product-1 PAUSED M1 due to failure</td>
+    </tr>
+    <tr>
+      <td>16.41</td>
+      <td>M2 REPAIRED</td>
+    </tr>
+    <tr>
+      <td>17.08</td>
+      <td>Product-1 PAUSED M1 due to failure</td>
+    </tr>
+    <tr>
+      <td>18.08</td>
+      <td>Product-1 PAUSED M1 due to failure</td>
+    </tr>
+    <tr>
+      <td>19.08</td>
+      <td>Product-1 PAUSED M1 due to failure</td>
+    </tr>
+    <tr>
+      <td>19.23</td>
+      <td>Product-5 ARRIVED</td>
+    </tr>
+  </tbody>
+</table>
+            </div>
+        </div>
+    </body>
+    </html>
+    
