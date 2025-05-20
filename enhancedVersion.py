@@ -222,10 +222,6 @@ class Product:
             'System Time': total_time  # Total time in system
         })
 
-def log(message, time):
-    """Add an event to the log"""
-    event_log.append((time, message))
-
 def product_arrival(env, machines, total_products=100):
     """Generate product arrivals"""
     i = 0
@@ -240,6 +236,11 @@ def product_arrival(env, machines, total_products=100):
         # Log progress periodically
         if i % 10 == 0:
             log(f"GENERATED {i}/{total_products} products", env.now)
+
+
+def log(message, time):
+    """Add an event to the log"""
+    event_log.append((time, message))
 
 def run_simulation(sim_time=None, total_products=100):
     """Run the simulation until all products are processed
