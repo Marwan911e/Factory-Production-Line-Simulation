@@ -706,6 +706,139 @@ The simulation calculates these important metrics:
 - **Bottleneck Identification**: Machine with highest utilization
 - **Failure Prone Identification**: Machine with most failures
 
+## 📊 Simulation Output Explained
+
+The simulation generates a comprehensive HTML report with visualizations and data tables to help analyze factory performance. Below is a breakdown of each section and what it means:
+
+### 1. Executive Summary Dashboard 📈
+
+![Executive Summary](reports/machine_chart.png)
+
+* **What it shows:** A quick overview of the entire simulation with key metrics
+* **Key metrics:**
+  * **Throughput Rate:** How many products the factory completes per time unit (e.g., 0.0952 products/time unit)
+  * **Average Lead Time:** Average time from when a product enters until it exits (e.g., 299.8 time units)
+  * **System Efficiency:** Percentage of time spent actually processing vs. waiting (e.g., 7.2%)
+  * **Server Utilization:** Average percentage of time machines are busy (e.g., 73.1%)
+* **Alerts:**
+  * **Bottleneck Alert:** Identifies which machine is slowing down the entire system (e.g., M2 at 77.9% utilization)
+  * **Reliability Alert:** Shows which machine breaks down most often (e.g., M2 with 19 failures)
+* **Why it matters:** Helps quickly identify the biggest issues limiting production
+
+### 2. Queueing Theory Metrics 📑
+
+![Queueing Metrics](reports/queueing_metrics.png)
+
+* **What it shows:** Advanced analysis of how products flow and wait in the system
+* **System-Wide Metrics:**
+  * **Average Waiting Time:** Average time products spend waiting (e.g., 274.31 time units)
+  * **Probability of Wait:** Chance that a product will need to wait (e.g., 99%)
+  * **Average Queue Length:** Average number of products waiting at any time (e.g., 8.71 products)
+  * **Server Utilization:** Percentage of time machines are busy (e.g., 73%)
+* **Utilization-Waiting Time Relationship:**
+  * Shows how waiting times grow exponentially as utilization increases
+  * Even at 80% utilization, waiting times are 4x longer than at 50% utilization
+* **Why it matters:** Explains why bottlenecks form even when machines aren't running at full capacity
+
+### 3. Machine Performance Analysis 🔍
+
+![Machine Performance](reports/machine_chart.png)
+
+* **What it shows:** Utilization and availability for each machine
+* **Key information:**
+  * **Utilization bars:** Percentage of time each machine spends actively processing
+  * **Availability bars:** Percentage of time each machine is operational (not broken)
+  * **Bottleneck highlight:** The machine with highest utilization (limiting throughput)
+* **Why it matters:** Helps identify which machine to upgrade first to improve overall production
+
+### 4. Wait Time vs. Processing Time ⏱️
+
+![Wait Time Analysis](reports/waiting_time_chart.png)
+
+* **What it shows:** Comparison between waiting time and actual processing time at each machine
+* **Key information:**
+  * **Blue bars:** Average time products spend waiting in queue
+  * **Orange bars:** Average time products spend being processed
+* **Key insight:** Products spend much more time waiting than being processed
+* **Why it matters:** Reveals where time is being wasted in the production process
+
+### 5. Machine Reliability Analysis 🔧
+
+![Reliability Analysis](reports/machine_status.png)
+
+* **What it shows:** Patterns of machine failures and repairs
+* **Key information:**
+  * **Uptime periods:** When machines were operational
+  * **Downtime periods:** When machines were broken and being repaired
+  * **Failure frequency:** How often each machine breaks down
+* **Why it matters:** Identifies which machines need better maintenance or replacement
+
+### 6. Product Flow Timeline 🚶
+
+![Product Timeline](reports/timeline_chart.png)
+
+* **What it shows:** How individual products move through the production line over time
+* **Key information:**
+  * **Horizontal bars:** Each product's journey through the system
+  * **Color segments:** Time spent at different machines and in queues
+  * **Timeline:** When products enter and exit the system
+* **Why it matters:** Visualizes the actual flow and bottlenecks in the production process
+
+### 7. Product Metrics Chart 📊
+
+![Product Metrics](reports/product_metrics_chart.png)
+
+* **What it shows:** Detailed breakdown of metrics for individual products
+* **Key metrics per product:**
+  * **Lead Time:** Total time from entry to exit
+  * **Waiting Time:** Time spent in queues
+  * **Processing Time:** Time being actively processed
+* **Why it matters:** Helps identify patterns or unusual cases in production
+
+### 8. Machine Performance Metrics Table 📋
+
+* **What it shows:** Comprehensive statistics for each machine in tabular format
+* **Key metrics:**
+  * **Products Processed:** Number of products that went through each machine
+  * **Utilization (%):** Percentage of time actively processing products
+  * **Availability (%):** Percentage of time operational (not broken)
+  * **Number of Failures:** How many times each machine broke down
+  * **Avg Queue Length:** Average number of products waiting
+  * **Avg Service Time:** Average time to process one product
+* **Why it matters:** Provides detailed data to support improvement decisions
+
+### 9. System Performance Metrics Table 📋
+
+* **What it shows:** Overall factory performance metrics
+* **Key metrics:**
+  * **Average Waiting Time:** Mean time products spend waiting (e.g., 274.31 time units)
+  * **Average Service Time:** Mean time products spend being processed (e.g., 21.54 time units)
+  * **Average Lead Time:** Mean total time in system (e.g., 299.81 time units)
+  * **Waiting Time Percentage:** Proportion of time spent waiting (e.g., 91.5%)
+  * **Throughput:** Products completed per time unit (e.g., 0.1)
+  * **System Efficiency:** Ratio of processing time to total lead time (e.g., 7.19%)
+* **Why it matters:** Provides big-picture metrics to assess overall factory performance
+
+### 10. Product Metrics Table 📋
+
+* **What it shows:** Detailed data for each individual product
+* **Key information per product:**
+  * **Arrival & Completion Times:** When products entered and exited
+  * **Lead Time:** Total time in system
+  * **Queue Times:** How long products waited at each machine
+  * **Processing Times:** How long each machine took to process products
+* **Why it matters:** Allows for detailed analysis of individual product journeys
+
+### 11. Simulation Event Log 📝
+
+* **What it shows:** Chronological record of all events during simulation
+* **Events tracked:**
+  * Product arrivals
+  * Processing starts and ends
+  * Machine failures and repairs
+  * System completion events
+* **Why it matters:** Provides a detailed timeline for debugging or understanding specific events
+
 ## 🔍 Interpreting Simulation Results
 
 ### Understanding Bottlenecks

@@ -852,6 +852,13 @@ def save_charts_to_directory(results):
     
     return report_dir
 
+def prepare_all_products_table(results):
+    """Prepare HTML table for all products"""
+    # Convert all products DataFrame to HTML table
+    all_products_df = results['product_metrics'].round(2)
+    all_products_table = all_products_df.to_html(classes='table table-striped table-hover', index=False)
+    return all_products_table
+
 def create_html_report(results):
     """Create a comprehensive HTML report with all analysis results"""
     # Create report directory if it doesn't exist
@@ -893,6 +900,9 @@ def create_html_report(results):
     system_table = system_metrics.to_html(classes='table table-striped table-hover', index=False)
     queueing_metrics = pd.DataFrame([results['queue_metrics']]).round(2)
     queueing_table = queueing_metrics.to_html(classes='table table-striped table-hover', index=False)
+    
+    # Prepare the table with all products
+    all_products_table = prepare_all_products_table(results)
     
     # Convert first 20 events to HTML table
     event_table = results['event_log'].head(20).to_html(classes='table table-striped table-hover', index=False)
@@ -1016,6 +1026,25 @@ def create_html_report(results):
                 border-left: 5px solid #6c757d;
                 font-family: monospace;
             }
+            /* Button styles */
+            .view-all-btn {
+                background-color: #0d6efd;
+                color: white;
+                border: none;
+                padding: 8px 16px;
+                border-radius: 4px;
+                cursor: pointer;
+                font-weight: bold;
+                margin: 10px 0;
+                transition: all 0.2s ease;
+            }
+            .view-all-btn:hover {
+                background-color: #0b5ed7;
+            }
+            /* Hide the full product table by default */
+            #fullProductTable {
+                display: none;
+            }
             @media print {
                 body { 
                     margin: 0;
@@ -1028,6 +1057,23 @@ def create_html_report(results):
                 }
             }
         </style>
+        <script>
+            function toggleProductTable() {
+                var displayTable = document.getElementById('displayProductTable');
+                var fullTable = document.getElementById('fullProductTable');
+                var button = document.getElementById('toggleButton');
+                
+                if (fullTable.style.display === 'none' || fullTable.style.display === '') {
+                    displayTable.style.display = 'none';
+                    fullTable.style.display = 'block';
+                    button.innerText = 'View Limited Products (' + {{ display_products }} + ')';
+                } else {
+                    displayTable.style.display = 'block';
+                    fullTable.style.display = 'none';
+                    button.innerText = 'View All Products (' + {{ total_products }} + ')';
+                }
+            }
+        </script>
     </head>
     <body>
         <div class="header">
@@ -1208,9 +1254,23 @@ def create_html_report(results):
         
         <div class="section">
             <h2>Product Metrics</h2>
-            <p>Showing the first {{ display_products }} products out of {{ total_products }} total simulated products.</p>
-            <div class="table-container">
-                {{ product_table|safe }}
+            <!-- Add the toggle button here -->
+            <button id="toggleButton" class="view-all-btn" onclick="toggleProductTable()">View All Products ({{ total_products }})</button>
+            
+            <!-- Display products table (shown by default) -->
+            <div id="displayProductTable">
+                <p>Showing the first {{ display_products }} products out of {{ total_products }} total simulated products.</p>
+                <div class="table-container">
+                    {{ product_table|safe }}
+                </div>
+            </div>
+            
+            <!-- Full products table (hidden by default) -->
+            <div id="fullProductTable">
+                <p>Showing all {{ total_products }} simulated products.</p>
+                <div class="table-container">
+                    {{ all_products_table|safe }}
+                </div>
             </div>
         </div>
         
@@ -1243,6 +1303,7 @@ def create_html_report(results):
         'system_table': system_table,
         'machine_table': machine_table,
         'product_table': product_table,
+        'all_products_table': all_products_table,  # Add all products table
         'event_table': event_table,
         'queueing_table': queueing_table,
         'total_products': len(results['product_metrics']),
