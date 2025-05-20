@@ -1,0 +1,2882 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Factory Production Line Simulation Report</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <style>
+            body { 
+                font-family: Arial, sans-serif; 
+                margin: 20px;
+                padding-bottom: 50px;
+                color: #333;
+            }
+            .header {
+                text-align: center;
+                margin-bottom: 30px;
+                padding: 30px;
+                background-color: #f0f2f5;
+                border-radius: 8px;
+                box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            }
+            .section {
+                margin-bottom: 40px;
+                padding: 25px;
+                background-color: #fff;
+                border-radius: 8px;
+                box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+            }
+            .highlight-box {
+                background-color: #f8f9fa;
+                border-left: 5px solid #0d6efd;
+                padding: 20px;
+                margin: 25px 0;
+                border-radius: 6px;
+            }
+            .alert-box {
+                padding: 15px;
+                margin: 15px 0;
+                border-radius: 6px;
+            }
+            .alert-box.bottleneck {
+                background-color: rgba(255, 0, 0, 0.1);
+                border-left: 5px solid #dc3545;
+            }
+            .alert-box.failure {
+                background-color: rgba(255, 193, 7, 0.1);
+                border-left: 5px solid #ffc107;
+            }
+            .table-container {
+                overflow-x: auto;
+                margin: 20px 0;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+                border-radius: 6px;
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+            th, td {
+                padding: 12px 15px;
+                text-align: left;
+            }
+            .key-metric {
+                border-radius: 8px;
+                padding: 25px;
+                margin: 15px;
+                text-align: center;
+                background-color: #f8f9fa;
+                box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+                transition: all 0.2s ease;
+            }
+            .key-metric:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+            }
+            .key-metric h3 {
+                margin: 0;
+                font-size: 2.5rem;
+                font-weight: 600;
+                color: #0d6efd;
+            }
+            .key-metric p {
+                margin: 10px 0 0 0;
+                color: #6c757d;
+                font-weight: 500;
+            }
+            .recommendation {
+                background-color: #e8f4ff;
+                border-left: 5px solid #0d6efd;
+                padding: 15px;
+                margin: 20px 0;
+                border-radius: 6px;
+            }
+            img.chart {
+                width: 100%;
+                height: auto;
+                border-radius: 8px;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+                margin: 15px 0;
+            }
+            .info-banner {
+                background-color: #e8f4ff;
+                padding: 10px 15px;
+                margin: 10px 0;
+                border-radius: 6px;
+                font-weight: 500;
+                color: #0d6efd;
+            }
+            .formula-box {
+                background-color: #f8f9fa;
+                padding: 10px;
+                margin: 10px 0;
+                border-radius: 6px;
+                border-left: 5px solid #6c757d;
+                font-family: monospace;
+            }
+            /* Button styles */
+            .view-all-btn {
+                background-color: #0d6efd;
+                color: white;
+                border: none;
+                padding: 8px 16px;
+                border-radius: 4px;
+                cursor: pointer;
+                font-weight: bold;
+                margin: 10px 0;
+                transition: all 0.2s ease;
+            }
+            .view-all-btn:hover {
+                background-color: #0b5ed7;
+            }
+            /* Hide the full product table by default */
+            #fullProductTable {
+                display: none;
+            }
+            @media print {
+                body { 
+                    margin: 0;
+                    padding: 0;
+                }
+                .section {
+                    page-break-inside: avoid;
+                    box-shadow: none;
+                    border: 1px solid #ddd;
+                }
+            }
+        </style>
+        <script>
+            function toggleProductTable() {
+                var displayTable = document.getElementById('displayProductTable');
+                var fullTable = document.getElementById('fullProductTable');
+                var button = document.getElementById('toggleButton');
+                
+                if (fullTable.style.display === 'none' || fullTable.style.display === '') {
+                    displayTable.style.display = 'none';
+                    fullTable.style.display = 'block';
+                    button.innerText = 'View Limited Products (' + 20 + ')';
+                } else {
+                    displayTable.style.display = 'block';
+                    fullTable.style.display = 'none';
+                    button.innerText = 'View All Products (' + 100 + ')';
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <div class="header">
+            <h1>Factory Production Line Simulation Report</h1>
+            <p class="text-muted">Generated on 2025-05-21 00:01:11</p>
+            <div class="info-banner">
+                <p>Simulation run with 100 products</p>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Executive Summary</h2>
+            <div class="highlight-box">
+                <p>This simulation models a factory production line with three machines in series (M1, M2, M3). 
+                Each machine processes products sequentially, and machines can experience random failures.</p>
+                
+                <div class="alert-box bottleneck">
+                    <h4>⚠️ Bottleneck Identified: <strong>M1</strong></h4>
+                    <p>This machine has the highest utilization (74.5%) and is limiting the overall system throughput.</p>
+                </div>
+                
+                <div class="alert-box failure">
+                    <h4>⚙️ Reliability Issue: <strong>M2</strong></h4>
+                    <p>This machine experienced the most failures during the simulation, with 21 breakdowns.</p>
+                </div>
+            </div>
+            
+            <div class="row mt-4">
+                <div class="col-md-3">
+                    <div class="key-metric">
+                        <h3>0.0909</h3>
+                        <p>Products per Time Unit</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="key-metric">
+                        <h3>384.7s</h3>
+                        <p>Average Lead Time</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="key-metric">
+                        <h3>5.8%</h3>
+                        <p>System Efficiency</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="key-metric">
+                        <h3>75.8%</h3>
+                        <p>Server Utilization</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Queueing Theory Metrics</h2>
+            <p>This section presents metrics calculated using queueing theory principles.</p>
+            
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <div class="formula-box">
+                        <p>Average Waiting Time = Total time Customer wait in queue / Total number of Customers</p>
+                        <p>Probability (Wait) = number of customer who wait(count) / Total number of customer</p>
+                        <p>Queue length = sum of all in queue / total number of customer</p>
+                        <p>Probability of idle = Total idle time of Server / Total run time in Simulation</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="formula-box">
+                        <p>Average Service Time = Total Service Time / Total number of customer</p>
+                        <p>Average time between arrivals = sum of interarrival times / total number of Customers -1</p>
+                        <p>Average waiting time for those who wait = Total time Customer wait in queue / Total number of Customers who wait(count)</p>
+                        <p>Server Utilization = 1 - probability of idle</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="table-container mt-4">
+                <h5>System-Wide Queueing Metrics</h5>
+                <table border="1" class="dataframe table table-striped table-hover">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Average Waiting Time</th>
+      <th>Probability of Wait</th>
+      <th>Average Queue Length</th>
+      <th>Average Service Time</th>
+      <th>Average Interarrival Time</th>
+      <th>Average Waiting Time (Those Who Wait)</th>
+      <th>Average Time in System</th>
+      <th>Server Utilization</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>356.73</td>
+      <td>0.99</td>
+      <td>10.81</td>
+      <td>22.49</td>
+      <td>4.85</td>
+      <td>360.33</td>
+      <td>384.68</td>
+      <td>0.76</td>
+    </tr>
+  </tbody>
+</table>
+            </div>
+            
+            <p class="mt-4">The chart below shows queueing theory metrics for each individual machine:</p>
+            <img src="queueing_metrics.png" alt="Queueing Theory Metrics by Machine" class="chart">
+            
+            <div class="recommendation">
+                <h4>💡 Queueing Theory Insight:</h4>
+                <p>The probability of wait and queue length metrics help identify where congestion occurs in the system.
+                Machines with high server utilization and long waiting times indicate bottlenecks that should be prioritized for improvement.</p>
+                
+                <h5>Understanding Utilization and Waiting Time:</h5>
+                <p>Even with moderate utilization rates (e.g., 67%), long waiting times can occur. This is because as utilization increases, 
+                waiting times grow exponentially, not linearly:</p>
+                <ul>
+                    <li>At 50% utilization, relative waiting time = 1x</li>
+                    <li>At 67% utilization, relative waiting time = 2x</li>
+                    <li>At 80% utilization, relative waiting time = 4x</li>
+                    <li>At 90% utilization, relative waiting time = 9x</li>
+                    <li>At 95% utilization, relative waiting time = 19x</li>
+                </ul>
+                <p>This explains why bottlenecks form even when machines aren't running at 100% capacity.</p>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Machine Performance Analysis</h2>
+            <p>This chart shows the utilization and availability of each machine. The bottleneck machine is highlighted in red.</p>
+            <img src="machine_chart.png" alt="Machine Performance Chart" class="chart">
+            
+            <div class="recommendation">
+                <h4>💡 Performance Insight:</h4>
+                <p>Machine <strong>M1</strong> is operating at high utilization (74.5%), 
+                indicating it's limiting system throughput. Consider adding capacity to this machine or reducing its processing time.</p>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Wait Time vs. Processing Time</h2>
+            <p>This chart shows the average waiting and processing times for each machine. Longer waiting times indicate potential bottlenecks.</p>
+            <img src="waiting_time_chart.png" alt="Wait Time vs Processing Time Chart" class="chart">
+            
+            <div class="recommendation">
+                <h4>💡 Queue Management Insight:</h4>
+                <p>Products spend significant time waiting for M1. 
+                This confirms that this machine is a bottleneck and should be prioritized for improvement.</p>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Machine Reliability Analysis</h2>
+            <p>This chart shows the uptime and downtime for each machine during the simulation.</p>
+            <img src="machine_status.png" alt="Machine Reliability Chart" class="chart">
+            
+            <div class="recommendation">
+                <h4>💡 Reliability Insight:</h4>
+                <p>Machine <strong>M2</strong> had the most failures. 
+                Improving maintenance or upgrading this machine could increase overall system throughput by reducing downtime.</p>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Sample Comparison</h2>
+            <p>This chart compares key metrics between all simulated products and the products displayed in this report.</p>
+            <img src="comparison_chart.png" alt="Comparison Chart" class="chart">
+            
+            <div class="recommendation">
+                <h4>💡 Sample Insight:</h4>
+                <p>This chart helps verify if the first products shown in this report are representative of the entire simulation.</p>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Product Flow Timeline</h2>
+            <p>This chart shows how products moved through the production line.</p>
+            <img src="timeline_chart.png" alt="Product Timeline Chart" class="chart">
+        </div>
+        
+        <div class="section">
+            <h2>Product Metrics Analysis</h2>
+            <p>This chart provides a detailed breakdown of performance metrics for each product.</p>
+            <img src="product_metrics_chart.png" alt="Product Metrics Chart" class="chart">
+        </div>
+        
+        <div class="section">
+            <h2>Machine Performance Metrics</h2>
+            <div class="table-container">
+                <table border="1" class="dataframe table table-striped table-hover">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Machine</th>
+      <th>Products Processed</th>
+      <th>Utilization (%)</th>
+      <th>Availability (%)</th>
+      <th>Total Downtime</th>
+      <th>Number of Failures</th>
+      <th>Avg Waiting Time</th>
+      <th>Probability of Wait</th>
+      <th>Avg Queue Length</th>
+      <th>Probability of Idle</th>
+      <th>Avg Service Time</th>
+      <th>Avg Wait (Those Who Wait)</th>
+      <th>Server Utilization</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>M1</td>
+      <td>100</td>
+      <td>74.52</td>
+      <td>84.00</td>
+      <td>175.95</td>
+      <td>11</td>
+      <td>322.17</td>
+      <td>0.99</td>
+      <td>29.29</td>
+      <td>0.11</td>
+      <td>8.20</td>
+      <td>325.42</td>
+      <td>0.89</td>
+    </tr>
+    <tr>
+      <td>M2</td>
+      <td>100</td>
+      <td>70.48</td>
+      <td>85.83</td>
+      <td>155.89</td>
+      <td>21</td>
+      <td>20.97</td>
+      <td>0.80</td>
+      <td>1.91</td>
+      <td>0.31</td>
+      <td>7.75</td>
+      <td>26.21</td>
+      <td>0.69</td>
+    </tr>
+    <tr>
+      <td>M3</td>
+      <td>100</td>
+      <td>59.46</td>
+      <td>78.66</td>
+      <td>234.71</td>
+      <td>21</td>
+      <td>13.59</td>
+      <td>0.75</td>
+      <td>1.23</td>
+      <td>0.31</td>
+      <td>6.54</td>
+      <td>18.12</td>
+      <td>0.69</td>
+    </tr>
+  </tbody>
+</table>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>System Performance Metrics</h2>
+            <div class="table-container">
+                <table border="1" class="dataframe table table-striped table-hover">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Average Waiting Time</th>
+      <th>Average Service Time</th>
+      <th>Average Lead Time</th>
+      <th>Waiting Time Percentage</th>
+      <th>Throughput (products/time unit)</th>
+      <th>System Efficiency (%)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>356.73</td>
+      <td>22.49</td>
+      <td>384.68</td>
+      <td>92.73</td>
+      <td>0.09</td>
+      <td>5.85</td>
+    </tr>
+  </tbody>
+</table>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Product Metrics</h2>
+            <!-- Add the toggle button here -->
+            <button id="toggleButton" class="view-all-btn" onclick="toggleProductTable()">View All Products (100)</button>
+            
+            <!-- Display products table (shown by default) -->
+            <div id="displayProductTable">
+                <p>Showing the first 20 products out of 100 total simulated products.</p>
+                <div class="table-container">
+                    <table border="1" class="dataframe table table-striped table-hover">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Product</th>
+      <th>Arrival</th>
+      <th>Completion</th>
+      <th>Lead Time</th>
+      <th>Total Waiting Time</th>
+      <th>Total Service Time</th>
+      <th>M1 Queue Time</th>
+      <th>M1 Processing Time</th>
+      <th>M2 Queue Time</th>
+      <th>M2 Processing Time</th>
+      <th>M3 Queue Time</th>
+      <th>M3 Processing Time</th>
+      <th>M1 Time</th>
+      <th>M2 Time</th>
+      <th>M3 Time</th>
+      <th>System Time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Product-0</td>
+      <td>1.28</td>
+      <td>71.99</td>
+      <td>70.71</td>
+      <td>0.00</td>
+      <td>20.71</td>
+      <td>0.00</td>
+      <td>8.29</td>
+      <td>0.00</td>
+      <td>8.89</td>
+      <td>0.00</td>
+      <td>3.53</td>
+      <td>45.29</td>
+      <td>21.89</td>
+      <td>3.53</td>
+      <td>70.71</td>
+    </tr>
+    <tr>
+      <td>Product-1</td>
+      <td>1.31</td>
+      <td>89.05</td>
+      <td>87.74</td>
+      <td>59.74</td>
+      <td>28.01</td>
+      <td>45.27</td>
+      <td>7.42</td>
+      <td>14.47</td>
+      <td>6.35</td>
+      <td>0.00</td>
+      <td>14.23</td>
+      <td>7.42</td>
+      <td>6.35</td>
+      <td>14.23</td>
+      <td>87.74</td>
+    </tr>
+    <tr>
+      <td>Product-2</td>
+      <td>4.80</td>
+      <td>145.72</td>
+      <td>140.92</td>
+      <td>49.19</td>
+      <td>22.73</td>
+      <td>49.19</td>
+      <td>7.85</td>
+      <td>0.00</td>
+      <td>6.65</td>
+      <td>0.00</td>
+      <td>8.22</td>
+      <td>34.85</td>
+      <td>6.65</td>
+      <td>50.22</td>
+      <td>140.92</td>
+    </tr>
+    <tr>
+      <td>Product-3</td>
+      <td>10.95</td>
+      <td>151.19</td>
+      <td>140.24</td>
+      <td>118.31</td>
+      <td>20.93</td>
+      <td>77.90</td>
+      <td>7.57</td>
+      <td>0.00</td>
+      <td>7.88</td>
+      <td>40.41</td>
+      <td>5.47</td>
+      <td>7.57</td>
+      <td>8.88</td>
+      <td>5.47</td>
+      <td>140.24</td>
+    </tr>
+    <tr>
+      <td>Product-4</td>
+      <td>11.04</td>
+      <td>155.49</td>
+      <td>144.45</td>
+      <td>123.86</td>
+      <td>20.59</td>
+      <td>85.38</td>
+      <td>6.95</td>
+      <td>1.94</td>
+      <td>9.34</td>
+      <td>36.54</td>
+      <td>4.30</td>
+      <td>6.95</td>
+      <td>9.34</td>
+      <td>4.30</td>
+      <td>144.45</td>
+    </tr>
+    <tr>
+      <td>Product-5</td>
+      <td>11.98</td>
+      <td>158.85</td>
+      <td>146.87</td>
+      <td>131.29</td>
+      <td>15.58</td>
+      <td>91.40</td>
+      <td>5.45</td>
+      <td>5.83</td>
+      <td>6.77</td>
+      <td>34.07</td>
+      <td>3.36</td>
+      <td>5.45</td>
+      <td>6.77</td>
+      <td>3.36</td>
+      <td>146.87</td>
+    </tr>
+    <tr>
+      <td>Product-6</td>
+      <td>15.16</td>
+      <td>169.62</td>
+      <td>154.46</td>
+      <td>122.23</td>
+      <td>27.23</td>
+      <td>93.67</td>
+      <td>7.91</td>
+      <td>4.68</td>
+      <td>8.55</td>
+      <td>23.88</td>
+      <td>10.77</td>
+      <td>7.91</td>
+      <td>13.55</td>
+      <td>10.77</td>
+      <td>154.46</td>
+    </tr>
+    <tr>
+      <td>Product-7</td>
+      <td>17.10</td>
+      <td>174.73</td>
+      <td>157.64</td>
+      <td>137.22</td>
+      <td>20.42</td>
+      <td>99.64</td>
+      <td>7.69</td>
+      <td>10.54</td>
+      <td>7.61</td>
+      <td>27.04</td>
+      <td>5.12</td>
+      <td>7.69</td>
+      <td>7.61</td>
+      <td>5.12</td>
+      <td>157.64</td>
+    </tr>
+    <tr>
+      <td>Product-8</td>
+      <td>18.25</td>
+      <td>176.76</td>
+      <td>158.51</td>
+      <td>139.24</td>
+      <td>19.28</td>
+      <td>106.18</td>
+      <td>9.82</td>
+      <td>8.33</td>
+      <td>7.43</td>
+      <td>24.73</td>
+      <td>2.03</td>
+      <td>9.82</td>
+      <td>7.43</td>
+      <td>2.03</td>
+      <td>158.51</td>
+    </tr>
+    <tr>
+      <td>Product-9</td>
+      <td>20.75</td>
+      <td>190.79</td>
+      <td>170.04</td>
+      <td>143.67</td>
+      <td>26.37</td>
+      <td>113.50</td>
+      <td>5.81</td>
+      <td>9.95</td>
+      <td>6.53</td>
+      <td>20.22</td>
+      <td>14.03</td>
+      <td>5.81</td>
+      <td>6.53</td>
+      <td>14.03</td>
+      <td>170.04</td>
+    </tr>
+    <tr>
+      <td>Product-10</td>
+      <td>22.70</td>
+      <td>194.26</td>
+      <td>171.56</td>
+      <td>153.80</td>
+      <td>17.75</td>
+      <td>117.36</td>
+      <td>6.24</td>
+      <td>10.24</td>
+      <td>8.04</td>
+      <td>26.20</td>
+      <td>3.47</td>
+      <td>6.24</td>
+      <td>8.04</td>
+      <td>3.47</td>
+      <td>171.56</td>
+    </tr>
+    <tr>
+      <td>Product-11</td>
+      <td>23.20</td>
+      <td>201.89</td>
+      <td>178.68</td>
+      <td>156.15</td>
+      <td>22.53</td>
+      <td>123.10</td>
+      <td>6.85</td>
+      <td>11.44</td>
+      <td>8.06</td>
+      <td>21.61</td>
+      <td>7.63</td>
+      <td>6.85</td>
+      <td>8.06</td>
+      <td>7.63</td>
+      <td>178.68</td>
+    </tr>
+    <tr>
+      <td>Product-12</td>
+      <td>23.97</td>
+      <td>210.64</td>
+      <td>186.66</td>
+      <td>159.72</td>
+      <td>19.94</td>
+      <td>129.17</td>
+      <td>9.36</td>
+      <td>9.14</td>
+      <td>7.84</td>
+      <td>21.40</td>
+      <td>2.75</td>
+      <td>10.36</td>
+      <td>7.84</td>
+      <td>2.75</td>
+      <td>186.66</td>
+    </tr>
+    <tr>
+      <td>Product-13</td>
+      <td>24.63</td>
+      <td>211.62</td>
+      <td>186.98</td>
+      <td>148.29</td>
+      <td>17.70</td>
+      <td>138.87</td>
+      <td>9.70</td>
+      <td>0.00</td>
+      <td>7.01</td>
+      <td>9.42</td>
+      <td>0.98</td>
+      <td>30.70</td>
+      <td>7.01</td>
+      <td>0.98</td>
+      <td>186.98</td>
+    </tr>
+    <tr>
+      <td>Product-14</td>
+      <td>32.04</td>
+      <td>214.46</td>
+      <td>182.42</td>
+      <td>164.27</td>
+      <td>18.15</td>
+      <td>162.17</td>
+      <td>6.89</td>
+      <td>0.12</td>
+      <td>8.41</td>
+      <td>1.98</td>
+      <td>2.84</td>
+      <td>6.89</td>
+      <td>8.41</td>
+      <td>2.84</td>
+      <td>182.42</td>
+    </tr>
+    <tr>
+      <td>Product-15</td>
+      <td>32.06</td>
+      <td>243.28</td>
+      <td>211.22</td>
+      <td>169.04</td>
+      <td>38.18</td>
+      <td>169.04</td>
+      <td>10.37</td>
+      <td>0.00</td>
+      <td>7.95</td>
+      <td>0.00</td>
+      <td>19.87</td>
+      <td>10.37</td>
+      <td>11.95</td>
+      <td>19.87</td>
+      <td>211.22</td>
+    </tr>
+    <tr>
+      <td>Product-16</td>
+      <td>35.98</td>
+      <td>249.99</td>
+      <td>214.01</td>
+      <td>191.36</td>
+      <td>22.65</td>
+      <td>175.49</td>
+      <td>8.45</td>
+      <td>3.50</td>
+      <td>7.49</td>
+      <td>12.38</td>
+      <td>6.71</td>
+      <td>8.45</td>
+      <td>7.49</td>
+      <td>6.71</td>
+      <td>214.01</td>
+    </tr>
+    <tr>
+      <td>Product-17</td>
+      <td>50.96</td>
+      <td>255.31</td>
+      <td>204.35</td>
+      <td>168.95</td>
+      <td>18.39</td>
+      <td>168.95</td>
+      <td>7.19</td>
+      <td>0.00</td>
+      <td>6.51</td>
+      <td>0.00</td>
+      <td>4.70</td>
+      <td>24.19</td>
+      <td>6.51</td>
+      <td>4.70</td>
+      <td>204.35</td>
+    </tr>
+    <tr>
+      <td>Product-18</td>
+      <td>56.98</td>
+      <td>314.85</td>
+      <td>257.87</td>
+      <td>187.12</td>
+      <td>31.75</td>
+      <td>187.12</td>
+      <td>9.68</td>
+      <td>0.00</td>
+      <td>8.60</td>
+      <td>0.00</td>
+      <td>13.46</td>
+      <td>9.68</td>
+      <td>8.60</td>
+      <td>36.46</td>
+      <td>257.87</td>
+    </tr>
+    <tr>
+      <td>Product-19</td>
+      <td>59.06</td>
+      <td>337.00</td>
+      <td>277.93</td>
+      <td>239.76</td>
+      <td>23.17</td>
+      <td>194.71</td>
+      <td>8.55</td>
+      <td>16.06</td>
+      <td>7.47</td>
+      <td>28.99</td>
+      <td>7.15</td>
+      <td>8.55</td>
+      <td>7.47</td>
+      <td>22.15</td>
+      <td>277.93</td>
+    </tr>
+  </tbody>
+</table>
+                </div>
+            </div>
+            
+            <!-- Full products table (hidden by default) -->
+            <div id="fullProductTable">
+                <p>Showing all 100 simulated products.</p>
+                <div class="table-container">
+                    <table border="1" class="dataframe table table-striped table-hover">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Product</th>
+      <th>Arrival</th>
+      <th>Completion</th>
+      <th>Lead Time</th>
+      <th>Total Waiting Time</th>
+      <th>Total Service Time</th>
+      <th>M1 Queue Time</th>
+      <th>M1 Processing Time</th>
+      <th>M2 Queue Time</th>
+      <th>M2 Processing Time</th>
+      <th>M3 Queue Time</th>
+      <th>M3 Processing Time</th>
+      <th>M1 Time</th>
+      <th>M2 Time</th>
+      <th>M3 Time</th>
+      <th>System Time</th>
+      <th>product_num</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Product-0</td>
+      <td>1.28</td>
+      <td>71.99</td>
+      <td>70.71</td>
+      <td>0.00</td>
+      <td>20.71</td>
+      <td>0.00</td>
+      <td>8.29</td>
+      <td>0.00</td>
+      <td>8.89</td>
+      <td>0.00</td>
+      <td>3.53</td>
+      <td>45.29</td>
+      <td>21.89</td>
+      <td>3.53</td>
+      <td>70.71</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>Product-1</td>
+      <td>1.31</td>
+      <td>89.05</td>
+      <td>87.74</td>
+      <td>59.74</td>
+      <td>28.01</td>
+      <td>45.27</td>
+      <td>7.42</td>
+      <td>14.47</td>
+      <td>6.35</td>
+      <td>0.00</td>
+      <td>14.23</td>
+      <td>7.42</td>
+      <td>6.35</td>
+      <td>14.23</td>
+      <td>87.74</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>Product-2</td>
+      <td>4.80</td>
+      <td>145.72</td>
+      <td>140.92</td>
+      <td>49.19</td>
+      <td>22.73</td>
+      <td>49.19</td>
+      <td>7.85</td>
+      <td>0.00</td>
+      <td>6.65</td>
+      <td>0.00</td>
+      <td>8.22</td>
+      <td>34.85</td>
+      <td>6.65</td>
+      <td>50.22</td>
+      <td>140.92</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>Product-3</td>
+      <td>10.95</td>
+      <td>151.19</td>
+      <td>140.24</td>
+      <td>118.31</td>
+      <td>20.93</td>
+      <td>77.90</td>
+      <td>7.57</td>
+      <td>0.00</td>
+      <td>7.88</td>
+      <td>40.41</td>
+      <td>5.47</td>
+      <td>7.57</td>
+      <td>8.88</td>
+      <td>5.47</td>
+      <td>140.24</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <td>Product-4</td>
+      <td>11.04</td>
+      <td>155.49</td>
+      <td>144.45</td>
+      <td>123.86</td>
+      <td>20.59</td>
+      <td>85.38</td>
+      <td>6.95</td>
+      <td>1.94</td>
+      <td>9.34</td>
+      <td>36.54</td>
+      <td>4.30</td>
+      <td>6.95</td>
+      <td>9.34</td>
+      <td>4.30</td>
+      <td>144.45</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>Product-5</td>
+      <td>11.98</td>
+      <td>158.85</td>
+      <td>146.87</td>
+      <td>131.29</td>
+      <td>15.58</td>
+      <td>91.40</td>
+      <td>5.45</td>
+      <td>5.83</td>
+      <td>6.77</td>
+      <td>34.07</td>
+      <td>3.36</td>
+      <td>5.45</td>
+      <td>6.77</td>
+      <td>3.36</td>
+      <td>146.87</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <td>Product-6</td>
+      <td>15.16</td>
+      <td>169.62</td>
+      <td>154.46</td>
+      <td>122.23</td>
+      <td>27.23</td>
+      <td>93.67</td>
+      <td>7.91</td>
+      <td>4.68</td>
+      <td>8.55</td>
+      <td>23.88</td>
+      <td>10.77</td>
+      <td>7.91</td>
+      <td>13.55</td>
+      <td>10.77</td>
+      <td>154.46</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <td>Product-7</td>
+      <td>17.10</td>
+      <td>174.73</td>
+      <td>157.64</td>
+      <td>137.22</td>
+      <td>20.42</td>
+      <td>99.64</td>
+      <td>7.69</td>
+      <td>10.54</td>
+      <td>7.61</td>
+      <td>27.04</td>
+      <td>5.12</td>
+      <td>7.69</td>
+      <td>7.61</td>
+      <td>5.12</td>
+      <td>157.64</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <td>Product-8</td>
+      <td>18.25</td>
+      <td>176.76</td>
+      <td>158.51</td>
+      <td>139.24</td>
+      <td>19.28</td>
+      <td>106.18</td>
+      <td>9.82</td>
+      <td>8.33</td>
+      <td>7.43</td>
+      <td>24.73</td>
+      <td>2.03</td>
+      <td>9.82</td>
+      <td>7.43</td>
+      <td>2.03</td>
+      <td>158.51</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <td>Product-9</td>
+      <td>20.75</td>
+      <td>190.79</td>
+      <td>170.04</td>
+      <td>143.67</td>
+      <td>26.37</td>
+      <td>113.50</td>
+      <td>5.81</td>
+      <td>9.95</td>
+      <td>6.53</td>
+      <td>20.22</td>
+      <td>14.03</td>
+      <td>5.81</td>
+      <td>6.53</td>
+      <td>14.03</td>
+      <td>170.04</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <td>Product-10</td>
+      <td>22.70</td>
+      <td>194.26</td>
+      <td>171.56</td>
+      <td>153.80</td>
+      <td>17.75</td>
+      <td>117.36</td>
+      <td>6.24</td>
+      <td>10.24</td>
+      <td>8.04</td>
+      <td>26.20</td>
+      <td>3.47</td>
+      <td>6.24</td>
+      <td>8.04</td>
+      <td>3.47</td>
+      <td>171.56</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <td>Product-11</td>
+      <td>23.20</td>
+      <td>201.89</td>
+      <td>178.68</td>
+      <td>156.15</td>
+      <td>22.53</td>
+      <td>123.10</td>
+      <td>6.85</td>
+      <td>11.44</td>
+      <td>8.06</td>
+      <td>21.61</td>
+      <td>7.63</td>
+      <td>6.85</td>
+      <td>8.06</td>
+      <td>7.63</td>
+      <td>178.68</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <td>Product-12</td>
+      <td>23.97</td>
+      <td>210.64</td>
+      <td>186.66</td>
+      <td>159.72</td>
+      <td>19.94</td>
+      <td>129.17</td>
+      <td>9.36</td>
+      <td>9.14</td>
+      <td>7.84</td>
+      <td>21.40</td>
+      <td>2.75</td>
+      <td>10.36</td>
+      <td>7.84</td>
+      <td>2.75</td>
+      <td>186.66</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <td>Product-13</td>
+      <td>24.63</td>
+      <td>211.62</td>
+      <td>186.98</td>
+      <td>148.29</td>
+      <td>17.70</td>
+      <td>138.87</td>
+      <td>9.70</td>
+      <td>0.00</td>
+      <td>7.01</td>
+      <td>9.42</td>
+      <td>0.98</td>
+      <td>30.70</td>
+      <td>7.01</td>
+      <td>0.98</td>
+      <td>186.98</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <td>Product-14</td>
+      <td>32.04</td>
+      <td>214.46</td>
+      <td>182.42</td>
+      <td>164.27</td>
+      <td>18.15</td>
+      <td>162.17</td>
+      <td>6.89</td>
+      <td>0.12</td>
+      <td>8.41</td>
+      <td>1.98</td>
+      <td>2.84</td>
+      <td>6.89</td>
+      <td>8.41</td>
+      <td>2.84</td>
+      <td>182.42</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <td>Product-15</td>
+      <td>32.06</td>
+      <td>243.28</td>
+      <td>211.22</td>
+      <td>169.04</td>
+      <td>38.18</td>
+      <td>169.04</td>
+      <td>10.37</td>
+      <td>0.00</td>
+      <td>7.95</td>
+      <td>0.00</td>
+      <td>19.87</td>
+      <td>10.37</td>
+      <td>11.95</td>
+      <td>19.87</td>
+      <td>211.22</td>
+      <td>15</td>
+    </tr>
+    <tr>
+      <td>Product-16</td>
+      <td>35.98</td>
+      <td>249.99</td>
+      <td>214.01</td>
+      <td>191.36</td>
+      <td>22.65</td>
+      <td>175.49</td>
+      <td>8.45</td>
+      <td>3.50</td>
+      <td>7.49</td>
+      <td>12.38</td>
+      <td>6.71</td>
+      <td>8.45</td>
+      <td>7.49</td>
+      <td>6.71</td>
+      <td>214.01</td>
+      <td>16</td>
+    </tr>
+    <tr>
+      <td>Product-17</td>
+      <td>50.96</td>
+      <td>255.31</td>
+      <td>204.35</td>
+      <td>168.95</td>
+      <td>18.39</td>
+      <td>168.95</td>
+      <td>7.19</td>
+      <td>0.00</td>
+      <td>6.51</td>
+      <td>0.00</td>
+      <td>4.70</td>
+      <td>24.19</td>
+      <td>6.51</td>
+      <td>4.70</td>
+      <td>204.35</td>
+      <td>17</td>
+    </tr>
+    <tr>
+      <td>Product-18</td>
+      <td>56.98</td>
+      <td>314.85</td>
+      <td>257.87</td>
+      <td>187.12</td>
+      <td>31.75</td>
+      <td>187.12</td>
+      <td>9.68</td>
+      <td>0.00</td>
+      <td>8.60</td>
+      <td>0.00</td>
+      <td>13.46</td>
+      <td>9.68</td>
+      <td>8.60</td>
+      <td>36.46</td>
+      <td>257.87</td>
+      <td>18</td>
+    </tr>
+    <tr>
+      <td>Product-19</td>
+      <td>59.06</td>
+      <td>337.00</td>
+      <td>277.93</td>
+      <td>239.76</td>
+      <td>23.17</td>
+      <td>194.71</td>
+      <td>8.55</td>
+      <td>16.06</td>
+      <td>7.47</td>
+      <td>28.99</td>
+      <td>7.15</td>
+      <td>8.55</td>
+      <td>7.47</td>
+      <td>22.15</td>
+      <td>277.93</td>
+      <td>19</td>
+    </tr>
+    <tr>
+      <td>Product-20</td>
+      <td>60.58</td>
+      <td>340.72</td>
+      <td>280.14</td>
+      <td>236.55</td>
+      <td>19.59</td>
+      <td>201.74</td>
+      <td>7.29</td>
+      <td>0.00</td>
+      <td>8.58</td>
+      <td>34.81</td>
+      <td>3.73</td>
+      <td>28.29</td>
+      <td>11.58</td>
+      <td>3.73</td>
+      <td>280.14</td>
+      <td>20</td>
+    </tr>
+    <tr>
+      <td>Product-21</td>
+      <td>60.91</td>
+      <td>343.95</td>
+      <td>283.04</td>
+      <td>267.00</td>
+      <td>16.04</td>
+      <td>229.71</td>
+      <td>6.22</td>
+      <td>5.35</td>
+      <td>6.59</td>
+      <td>31.94</td>
+      <td>3.23</td>
+      <td>6.22</td>
+      <td>6.59</td>
+      <td>3.23</td>
+      <td>283.04</td>
+      <td>21</td>
+    </tr>
+    <tr>
+      <td>Product-22</td>
+      <td>62.10</td>
+      <td>346.90</td>
+      <td>284.80</td>
+      <td>267.34</td>
+      <td>17.46</td>
+      <td>234.73</td>
+      <td>7.94</td>
+      <td>4.01</td>
+      <td>6.58</td>
+      <td>28.59</td>
+      <td>2.95</td>
+      <td>7.94</td>
+      <td>6.58</td>
+      <td>2.95</td>
+      <td>284.80</td>
+      <td>22</td>
+    </tr>
+    <tr>
+      <td>Product-23</td>
+      <td>64.85</td>
+      <td>352.01</td>
+      <td>287.16</td>
+      <td>267.38</td>
+      <td>19.78</td>
+      <td>239.92</td>
+      <td>8.22</td>
+      <td>2.37</td>
+      <td>6.45</td>
+      <td>25.09</td>
+      <td>5.11</td>
+      <td>8.22</td>
+      <td>6.45</td>
+      <td>5.11</td>
+      <td>287.16</td>
+      <td>23</td>
+    </tr>
+    <tr>
+      <td>Product-24</td>
+      <td>69.76</td>
+      <td>356.38</td>
+      <td>286.62</td>
+      <td>262.78</td>
+      <td>21.84</td>
+      <td>243.23</td>
+      <td>9.60</td>
+      <td>0.00</td>
+      <td>7.86</td>
+      <td>19.55</td>
+      <td>4.38</td>
+      <td>11.60</td>
+      <td>7.86</td>
+      <td>4.38</td>
+      <td>286.62</td>
+      <td>24</td>
+    </tr>
+    <tr>
+      <td>Product-25</td>
+      <td>78.27</td>
+      <td>360.11</td>
+      <td>281.84</td>
+      <td>260.09</td>
+      <td>20.75</td>
+      <td>246.33</td>
+      <td>8.92</td>
+      <td>0.00</td>
+      <td>8.10</td>
+      <td>13.76</td>
+      <td>3.73</td>
+      <td>8.92</td>
+      <td>9.10</td>
+      <td>3.73</td>
+      <td>281.84</td>
+      <td>25</td>
+    </tr>
+    <tr>
+      <td>Product-26</td>
+      <td>79.94</td>
+      <td>365.76</td>
+      <td>285.82</td>
+      <td>265.69</td>
+      <td>20.14</td>
+      <td>253.58</td>
+      <td>8.17</td>
+      <td>0.94</td>
+      <td>6.32</td>
+      <td>11.17</td>
+      <td>5.65</td>
+      <td>8.17</td>
+      <td>6.32</td>
+      <td>5.65</td>
+      <td>285.82</td>
+      <td>26</td>
+    </tr>
+    <tr>
+      <td>Product-27</td>
+      <td>92.97</td>
+      <td>369.45</td>
+      <td>276.48</td>
+      <td>256.21</td>
+      <td>20.27</td>
+      <td>248.72</td>
+      <td>8.26</td>
+      <td>0.00</td>
+      <td>8.32</td>
+      <td>7.49</td>
+      <td>3.69</td>
+      <td>8.26</td>
+      <td>8.32</td>
+      <td>3.69</td>
+      <td>276.48</td>
+      <td>27</td>
+    </tr>
+    <tr>
+      <td>Product-28</td>
+      <td>100.32</td>
+      <td>385.88</td>
+      <td>285.56</td>
+      <td>253.16</td>
+      <td>32.40</td>
+      <td>249.63</td>
+      <td>9.46</td>
+      <td>0.00</td>
+      <td>6.52</td>
+      <td>3.53</td>
+      <td>16.43</td>
+      <td>9.46</td>
+      <td>6.52</td>
+      <td>16.43</td>
+      <td>285.56</td>
+      <td>28</td>
+    </tr>
+    <tr>
+      <td>Product-29</td>
+      <td>116.28</td>
+      <td>390.45</td>
+      <td>274.17</td>
+      <td>254.78</td>
+      <td>19.39</td>
+      <td>243.12</td>
+      <td>7.48</td>
+      <td>0.00</td>
+      <td>7.33</td>
+      <td>11.66</td>
+      <td>4.58</td>
+      <td>7.48</td>
+      <td>7.33</td>
+      <td>4.58</td>
+      <td>274.17</td>
+      <td>29</td>
+    </tr>
+    <tr>
+      <td>Product-30</td>
+      <td>119.86</td>
+      <td>392.81</td>
+      <td>272.95</td>
+      <td>256.62</td>
+      <td>16.33</td>
+      <td>247.02</td>
+      <td>6.53</td>
+      <td>0.81</td>
+      <td>7.44</td>
+      <td>8.80</td>
+      <td>2.36</td>
+      <td>6.53</td>
+      <td>7.44</td>
+      <td>2.36</td>
+      <td>272.95</td>
+      <td>30</td>
+    </tr>
+    <tr>
+      <td>Product-31</td>
+      <td>121.61</td>
+      <td>396.08</td>
+      <td>274.48</td>
+      <td>255.66</td>
+      <td>18.81</td>
+      <td>251.81</td>
+      <td>7.07</td>
+      <td>1.17</td>
+      <td>8.47</td>
+      <td>2.69</td>
+      <td>3.27</td>
+      <td>7.07</td>
+      <td>8.47</td>
+      <td>3.27</td>
+      <td>274.48</td>
+      <td>31</td>
+    </tr>
+    <tr>
+      <td>Product-32</td>
+      <td>130.67</td>
+      <td>414.87</td>
+      <td>284.21</td>
+      <td>254.66</td>
+      <td>22.55</td>
+      <td>249.82</td>
+      <td>4.80</td>
+      <td>4.84</td>
+      <td>7.90</td>
+      <td>0.00</td>
+      <td>9.85</td>
+      <td>4.80</td>
+      <td>14.90</td>
+      <td>9.85</td>
+      <td>284.21</td>
+      <td>32</td>
+    </tr>
+    <tr>
+      <td>Product-33</td>
+      <td>138.70</td>
+      <td>419.29</td>
+      <td>280.59</td>
+      <td>261.80</td>
+      <td>18.79</td>
+      <td>246.58</td>
+      <td>6.22</td>
+      <td>13.52</td>
+      <td>8.14</td>
+      <td>1.70</td>
+      <td>4.42</td>
+      <td>6.22</td>
+      <td>8.14</td>
+      <td>4.42</td>
+      <td>280.59</td>
+      <td>33</td>
+    </tr>
+    <tr>
+      <td>Product-34</td>
+      <td>139.82</td>
+      <td>436.31</td>
+      <td>296.49</td>
+      <td>261.71</td>
+      <td>19.79</td>
+      <td>251.69</td>
+      <td>9.64</td>
+      <td>10.02</td>
+      <td>6.72</td>
+      <td>0.00</td>
+      <td>3.42</td>
+      <td>11.64</td>
+      <td>6.72</td>
+      <td>16.42</td>
+      <td>296.49</td>
+      <td>34</td>
+    </tr>
+    <tr>
+      <td>Product-35</td>
+      <td>143.71</td>
+      <td>445.17</td>
+      <td>301.45</td>
+      <td>259.44</td>
+      <td>25.02</td>
+      <td>259.44</td>
+      <td>9.20</td>
+      <td>0.00</td>
+      <td>7.72</td>
+      <td>0.00</td>
+      <td>8.10</td>
+      <td>9.20</td>
+      <td>7.72</td>
+      <td>8.10</td>
+      <td>301.45</td>
+      <td>35</td>
+    </tr>
+    <tr>
+      <td>Product-36</td>
+      <td>144.76</td>
+      <td>454.71</td>
+      <td>309.95</td>
+      <td>284.59</td>
+      <td>25.36</td>
+      <td>284.59</td>
+      <td>8.79</td>
+      <td>0.00</td>
+      <td>8.20</td>
+      <td>0.00</td>
+      <td>8.37</td>
+      <td>8.79</td>
+      <td>8.20</td>
+      <td>8.37</td>
+      <td>309.95</td>
+      <td>36</td>
+    </tr>
+    <tr>
+      <td>Product-37</td>
+      <td>145.77</td>
+      <td>469.29</td>
+      <td>323.52</td>
+      <td>292.36</td>
+      <td>20.16</td>
+      <td>292.36</td>
+      <td>9.28</td>
+      <td>0.00</td>
+      <td>7.98</td>
+      <td>0.00</td>
+      <td>2.90</td>
+      <td>20.28</td>
+      <td>7.98</td>
+      <td>2.90</td>
+      <td>323.52</td>
+      <td>37</td>
+    </tr>
+    <tr>
+      <td>Product-38</td>
+      <td>158.67</td>
+      <td>490.73</td>
+      <td>332.06</td>
+      <td>299.75</td>
+      <td>24.32</td>
+      <td>299.75</td>
+      <td>9.59</td>
+      <td>0.00</td>
+      <td>7.71</td>
+      <td>0.00</td>
+      <td>7.02</td>
+      <td>9.59</td>
+      <td>15.71</td>
+      <td>7.02</td>
+      <td>332.06</td>
+      <td>38</td>
+    </tr>
+    <tr>
+      <td>Product-39</td>
+      <td>160.20</td>
+      <td>498.18</td>
+      <td>337.98</td>
+      <td>315.40</td>
+      <td>22.58</td>
+      <td>307.80</td>
+      <td>8.23</td>
+      <td>7.48</td>
+      <td>6.90</td>
+      <td>0.12</td>
+      <td>7.45</td>
+      <td>8.23</td>
+      <td>6.90</td>
+      <td>7.45</td>
+      <td>337.98</td>
+      <td>39</td>
+    </tr>
+    <tr>
+      <td>Product-40</td>
+      <td>161.74</td>
+      <td>520.38</td>
+      <td>358.63</td>
+      <td>314.48</td>
+      <td>24.15</td>
+      <td>314.48</td>
+      <td>8.70</td>
+      <td>0.00</td>
+      <td>8.00</td>
+      <td>0.00</td>
+      <td>7.45</td>
+      <td>28.70</td>
+      <td>8.00</td>
+      <td>7.45</td>
+      <td>358.63</td>
+      <td>40</td>
+    </tr>
+    <tr>
+      <td>Product-41</td>
+      <td>164.35</td>
+      <td>521.93</td>
+      <td>357.58</td>
+      <td>340.58</td>
+      <td>16.00</td>
+      <td>340.58</td>
+      <td>8.94</td>
+      <td>0.00</td>
+      <td>6.25</td>
+      <td>0.00</td>
+      <td>0.81</td>
+      <td>8.94</td>
+      <td>6.25</td>
+      <td>0.81</td>
+      <td>357.58</td>
+      <td>41</td>
+    </tr>
+    <tr>
+      <td>Product-42</td>
+      <td>179.17</td>
+      <td>543.12</td>
+      <td>363.95</td>
+      <td>334.70</td>
+      <td>22.25</td>
+      <td>334.70</td>
+      <td>7.70</td>
+      <td>0.00</td>
+      <td>8.09</td>
+      <td>0.00</td>
+      <td>6.46</td>
+      <td>7.70</td>
+      <td>15.09</td>
+      <td>6.46</td>
+      <td>363.95</td>
+      <td>42</td>
+    </tr>
+    <tr>
+      <td>Product-43</td>
+      <td>180.68</td>
+      <td>551.02</td>
+      <td>370.33</td>
+      <td>348.29</td>
+      <td>22.04</td>
+      <td>340.88</td>
+      <td>7.68</td>
+      <td>7.41</td>
+      <td>7.60</td>
+      <td>0.00</td>
+      <td>6.75</td>
+      <td>7.68</td>
+      <td>7.60</td>
+      <td>6.75</td>
+      <td>370.33</td>
+      <td>43</td>
+    </tr>
+    <tr>
+      <td>Product-44</td>
+      <td>190.09</td>
+      <td>565.79</td>
+      <td>375.70</td>
+      <td>345.24</td>
+      <td>30.47</td>
+      <td>339.16</td>
+      <td>8.94</td>
+      <td>6.07</td>
+      <td>8.75</td>
+      <td>0.00</td>
+      <td>12.78</td>
+      <td>8.94</td>
+      <td>8.75</td>
+      <td>12.78</td>
+      <td>375.70</td>
+      <td>44</td>
+    </tr>
+    <tr>
+      <td>Product-45</td>
+      <td>195.08</td>
+      <td>567.93</td>
+      <td>372.85</td>
+      <td>357.01</td>
+      <td>15.83</td>
+      <td>343.11</td>
+      <td>5.40</td>
+      <td>9.42</td>
+      <td>8.30</td>
+      <td>4.48</td>
+      <td>2.13</td>
+      <td>5.40</td>
+      <td>8.30</td>
+      <td>2.13</td>
+      <td>372.85</td>
+      <td>45</td>
+    </tr>
+    <tr>
+      <td>Product-46</td>
+      <td>197.96</td>
+      <td>586.77</td>
+      <td>388.81</td>
+      <td>355.44</td>
+      <td>32.37</td>
+      <td>345.63</td>
+      <td>7.91</td>
+      <td>9.81</td>
+      <td>6.71</td>
+      <td>0.00</td>
+      <td>17.74</td>
+      <td>7.91</td>
+      <td>6.71</td>
+      <td>18.74</td>
+      <td>388.81</td>
+      <td>46</td>
+    </tr>
+    <tr>
+      <td>Product-47</td>
+      <td>211.60</td>
+      <td>590.38</td>
+      <td>378.78</td>
+      <td>359.49</td>
+      <td>19.28</td>
+      <td>339.90</td>
+      <td>7.42</td>
+      <td>9.10</td>
+      <td>8.25</td>
+      <td>10.49</td>
+      <td>3.61</td>
+      <td>7.42</td>
+      <td>8.25</td>
+      <td>3.61</td>
+      <td>378.78</td>
+      <td>47</td>
+    </tr>
+    <tr>
+      <td>Product-48</td>
+      <td>214.68</td>
+      <td>612.35</td>
+      <td>397.67</td>
+      <td>360.14</td>
+      <td>29.54</td>
+      <td>344.25</td>
+      <td>6.08</td>
+      <td>11.27</td>
+      <td>9.48</td>
+      <td>4.62</td>
+      <td>13.97</td>
+      <td>6.08</td>
+      <td>9.48</td>
+      <td>21.97</td>
+      <td>397.67</td>
+      <td>48</td>
+    </tr>
+    <tr>
+      <td>Product-49</td>
+      <td>220.04</td>
+      <td>617.47</td>
+      <td>397.43</td>
+      <td>375.33</td>
+      <td>22.10</td>
+      <td>344.97</td>
+      <td>8.65</td>
+      <td>12.09</td>
+      <td>8.32</td>
+      <td>18.26</td>
+      <td>5.12</td>
+      <td>8.65</td>
+      <td>8.32</td>
+      <td>5.12</td>
+      <td>397.43</td>
+      <td>49</td>
+    </tr>
+    <tr>
+      <td>Product-50</td>
+      <td>220.40</td>
+      <td>621.66</td>
+      <td>401.26</td>
+      <td>382.88</td>
+      <td>18.38</td>
+      <td>353.27</td>
+      <td>7.83</td>
+      <td>12.59</td>
+      <td>6.36</td>
+      <td>17.03</td>
+      <td>4.19</td>
+      <td>7.83</td>
+      <td>6.36</td>
+      <td>4.19</td>
+      <td>401.26</td>
+      <td>50</td>
+    </tr>
+    <tr>
+      <td>Product-51</td>
+      <td>223.15</td>
+      <td>627.81</td>
+      <td>404.66</td>
+      <td>381.71</td>
+      <td>22.95</td>
+      <td>358.35</td>
+      <td>9.66</td>
+      <td>9.28</td>
+      <td>7.14</td>
+      <td>14.08</td>
+      <td>6.15</td>
+      <td>9.66</td>
+      <td>7.14</td>
+      <td>6.15</td>
+      <td>404.66</td>
+      <td>51</td>
+    </tr>
+    <tr>
+      <td>Product-52</td>
+      <td>249.27</td>
+      <td>640.25</td>
+      <td>390.97</td>
+      <td>362.03</td>
+      <td>28.94</td>
+      <td>341.88</td>
+      <td>8.53</td>
+      <td>7.89</td>
+      <td>7.97</td>
+      <td>12.26</td>
+      <td>12.44</td>
+      <td>8.53</td>
+      <td>7.97</td>
+      <td>12.44</td>
+      <td>390.97</td>
+      <td>52</td>
+    </tr>
+    <tr>
+      <td>Product-53</td>
+      <td>256.34</td>
+      <td>643.49</td>
+      <td>387.15</td>
+      <td>355.56</td>
+      <td>20.59</td>
+      <td>343.36</td>
+      <td>9.53</td>
+      <td>6.34</td>
+      <td>7.82</td>
+      <td>5.87</td>
+      <td>3.24</td>
+      <td>9.53</td>
+      <td>7.82</td>
+      <td>3.24</td>
+      <td>387.15</td>
+      <td>53</td>
+    </tr>
+    <tr>
+      <td>Product-54</td>
+      <td>260.96</td>
+      <td>647.66</td>
+      <td>386.71</td>
+      <td>368.83</td>
+      <td>17.87</td>
+      <td>348.26</td>
+      <td>6.70</td>
+      <td>18.46</td>
+      <td>7.00</td>
+      <td>2.11</td>
+      <td>4.18</td>
+      <td>6.70</td>
+      <td>7.00</td>
+      <td>4.18</td>
+      <td>386.71</td>
+      <td>54</td>
+    </tr>
+    <tr>
+      <td>Product-55</td>
+      <td>262.77</td>
+      <td>660.63</td>
+      <td>397.86</td>
+      <td>368.29</td>
+      <td>23.57</td>
+      <td>353.14</td>
+      <td>10.31</td>
+      <td>15.15</td>
+      <td>6.40</td>
+      <td>0.00</td>
+      <td>6.86</td>
+      <td>10.31</td>
+      <td>6.40</td>
+      <td>12.86</td>
+      <td>397.86</td>
+      <td>55</td>
+    </tr>
+    <tr>
+      <td>Product-56</td>
+      <td>269.98</td>
+      <td>666.41</td>
+      <td>396.44</td>
+      <td>374.50</td>
+      <td>21.94</td>
+      <td>356.25</td>
+      <td>8.02</td>
+      <td>13.53</td>
+      <td>8.14</td>
+      <td>4.72</td>
+      <td>5.78</td>
+      <td>8.02</td>
+      <td>8.14</td>
+      <td>5.78</td>
+      <td>396.44</td>
+      <td>56</td>
+    </tr>
+    <tr>
+      <td>Product-57</td>
+      <td>271.07</td>
+      <td>675.37</td>
+      <td>404.30</td>
+      <td>380.43</td>
+      <td>23.87</td>
+      <td>363.18</td>
+      <td>6.88</td>
+      <td>14.80</td>
+      <td>8.04</td>
+      <td>2.46</td>
+      <td>8.95</td>
+      <td>6.88</td>
+      <td>8.04</td>
+      <td>8.95</td>
+      <td>404.30</td>
+      <td>57</td>
+    </tr>
+    <tr>
+      <td>Product-58</td>
+      <td>273.13</td>
+      <td>678.12</td>
+      <td>404.99</td>
+      <td>388.75</td>
+      <td>16.24</td>
+      <td>367.99</td>
+      <td>5.36</td>
+      <td>17.48</td>
+      <td>8.13</td>
+      <td>3.28</td>
+      <td>2.75</td>
+      <td>5.36</td>
+      <td>8.13</td>
+      <td>2.75</td>
+      <td>404.99</td>
+      <td>58</td>
+    </tr>
+    <tr>
+      <td>Product-59</td>
+      <td>274.91</td>
+      <td>683.30</td>
+      <td>408.39</td>
+      <td>389.45</td>
+      <td>18.94</td>
+      <td>371.57</td>
+      <td>7.73</td>
+      <td>17.88</td>
+      <td>8.26</td>
+      <td>0.00</td>
+      <td>2.95</td>
+      <td>7.73</td>
+      <td>8.26</td>
+      <td>2.95</td>
+      <td>408.39</td>
+      <td>59</td>
+    </tr>
+    <tr>
+      <td>Product-60</td>
+      <td>276.27</td>
+      <td>692.88</td>
+      <td>416.61</td>
+      <td>394.89</td>
+      <td>19.72</td>
+      <td>377.93</td>
+      <td>9.19</td>
+      <td>16.96</td>
+      <td>8.13</td>
+      <td>0.00</td>
+      <td>2.41</td>
+      <td>9.19</td>
+      <td>10.13</td>
+      <td>2.41</td>
+      <td>416.61</td>
+      <td>60</td>
+    </tr>
+    <tr>
+      <td>Product-61</td>
+      <td>281.41</td>
+      <td>717.17</td>
+      <td>435.75</td>
+      <td>400.86</td>
+      <td>29.89</td>
+      <td>381.98</td>
+      <td>8.20</td>
+      <td>18.88</td>
+      <td>8.65</td>
+      <td>0.00</td>
+      <td>13.04</td>
+      <td>8.20</td>
+      <td>8.65</td>
+      <td>18.04</td>
+      <td>435.75</td>
+      <td>61</td>
+    </tr>
+    <tr>
+      <td>Product-62</td>
+      <td>281.68</td>
+      <td>721.30</td>
+      <td>439.62</td>
+      <td>416.83</td>
+      <td>22.79</td>
+      <td>389.91</td>
+      <td>9.72</td>
+      <td>17.81</td>
+      <td>8.93</td>
+      <td>9.11</td>
+      <td>4.14</td>
+      <td>9.72</td>
+      <td>8.93</td>
+      <td>4.14</td>
+      <td>439.62</td>
+      <td>62</td>
+    </tr>
+    <tr>
+      <td>Product-63</td>
+      <td>296.36</td>
+      <td>736.89</td>
+      <td>440.53</td>
+      <td>409.43</td>
+      <td>26.10</td>
+      <td>384.95</td>
+      <td>8.46</td>
+      <td>18.28</td>
+      <td>7.05</td>
+      <td>6.19</td>
+      <td>10.59</td>
+      <td>8.46</td>
+      <td>7.05</td>
+      <td>15.59</td>
+      <td>440.53</td>
+      <td>63</td>
+    </tr>
+    <tr>
+      <td>Product-64</td>
+      <td>303.19</td>
+      <td>741.28</td>
+      <td>438.09</td>
+      <td>417.20</td>
+      <td>20.89</td>
+      <td>386.59</td>
+      <td>9.84</td>
+      <td>15.49</td>
+      <td>6.67</td>
+      <td>15.12</td>
+      <td>4.38</td>
+      <td>9.84</td>
+      <td>6.67</td>
+      <td>4.38</td>
+      <td>438.09</td>
+      <td>64</td>
+    </tr>
+    <tr>
+      <td>Product-65</td>
+      <td>307.86</td>
+      <td>756.97</td>
+      <td>449.11</td>
+      <td>418.55</td>
+      <td>30.56</td>
+      <td>391.76</td>
+      <td>8.21</td>
+      <td>13.95</td>
+      <td>6.65</td>
+      <td>12.85</td>
+      <td>15.69</td>
+      <td>8.21</td>
+      <td>6.65</td>
+      <td>15.69</td>
+      <td>449.11</td>
+      <td>65</td>
+    </tr>
+    <tr>
+      <td>Product-66</td>
+      <td>308.29</td>
+      <td>765.70</td>
+      <td>457.41</td>
+      <td>431.20</td>
+      <td>26.21</td>
+      <td>399.54</td>
+      <td>9.67</td>
+      <td>10.93</td>
+      <td>7.80</td>
+      <td>20.74</td>
+      <td>8.73</td>
+      <td>9.67</td>
+      <td>7.80</td>
+      <td>8.73</td>
+      <td>457.41</td>
+      <td>66</td>
+    </tr>
+    <tr>
+      <td>Product-67</td>
+      <td>310.34</td>
+      <td>777.89</td>
+      <td>467.55</td>
+      <td>435.61</td>
+      <td>27.94</td>
+      <td>407.16</td>
+      <td>7.25</td>
+      <td>11.48</td>
+      <td>8.50</td>
+      <td>16.97</td>
+      <td>12.19</td>
+      <td>7.25</td>
+      <td>12.50</td>
+      <td>12.19</td>
+      <td>467.55</td>
+      <td>67</td>
+    </tr>
+    <tr>
+      <td>Product-68</td>
+      <td>311.33</td>
+      <td>783.18</td>
+      <td>471.85</td>
+      <td>450.21</td>
+      <td>21.64</td>
+      <td>413.42</td>
+      <td>8.43</td>
+      <td>15.55</td>
+      <td>7.93</td>
+      <td>21.23</td>
+      <td>5.29</td>
+      <td>8.43</td>
+      <td>7.93</td>
+      <td>5.29</td>
+      <td>471.85</td>
+      <td>68</td>
+    </tr>
+    <tr>
+      <td>Product-69</td>
+      <td>314.19</td>
+      <td>791.95</td>
+      <td>477.75</td>
+      <td>450.79</td>
+      <td>26.96</td>
+      <td>418.98</td>
+      <td>8.50</td>
+      <td>14.98</td>
+      <td>9.69</td>
+      <td>16.83</td>
+      <td>8.77</td>
+      <td>8.50</td>
+      <td>9.69</td>
+      <td>8.77</td>
+      <td>477.75</td>
+      <td>69</td>
+    </tr>
+    <tr>
+      <td>Product-70</td>
+      <td>315.72</td>
+      <td>796.44</td>
+      <td>480.72</td>
+      <td>459.34</td>
+      <td>21.38</td>
+      <td>425.96</td>
+      <td>7.96</td>
+      <td>16.70</td>
+      <td>8.92</td>
+      <td>16.68</td>
+      <td>4.49</td>
+      <td>7.96</td>
+      <td>8.92</td>
+      <td>4.49</td>
+      <td>480.72</td>
+      <td>70</td>
+    </tr>
+    <tr>
+      <td>Product-71</td>
+      <td>325.24</td>
+      <td>797.28</td>
+      <td>472.04</td>
+      <td>453.31</td>
+      <td>18.73</td>
+      <td>424.40</td>
+      <td>10.37</td>
+      <td>15.26</td>
+      <td>7.52</td>
+      <td>13.65</td>
+      <td>0.85</td>
+      <td>10.37</td>
+      <td>7.52</td>
+      <td>0.85</td>
+      <td>472.04</td>
+      <td>71</td>
+    </tr>
+    <tr>
+      <td>Product-72</td>
+      <td>333.88</td>
+      <td>801.53</td>
+      <td>467.65</td>
+      <td>447.46</td>
+      <td>20.19</td>
+      <td>426.13</td>
+      <td>7.75</td>
+      <td>15.03</td>
+      <td>8.19</td>
+      <td>6.30</td>
+      <td>4.25</td>
+      <td>7.75</td>
+      <td>8.19</td>
+      <td>4.25</td>
+      <td>467.65</td>
+      <td>72</td>
+    </tr>
+    <tr>
+      <td>Product-73</td>
+      <td>339.98</td>
+      <td>876.02</td>
+      <td>536.04</td>
+      <td>443.54</td>
+      <td>26.50</td>
+      <td>427.78</td>
+      <td>7.47</td>
+      <td>15.76</td>
+      <td>8.10</td>
+      <td>0.00</td>
+      <td>10.94</td>
+      <td>7.47</td>
+      <td>21.10</td>
+      <td>63.94</td>
+      <td>536.04</td>
+      <td>73</td>
+    </tr>
+    <tr>
+      <td>Product-74</td>
+      <td>341.44</td>
+      <td>881.90</td>
+      <td>540.46</td>
+      <td>519.90</td>
+      <td>20.56</td>
+      <td>433.79</td>
+      <td>6.70</td>
+      <td>30.16</td>
+      <td>7.99</td>
+      <td>55.95</td>
+      <td>5.87</td>
+      <td>6.70</td>
+      <td>7.99</td>
+      <td>5.87</td>
+      <td>540.46</td>
+      <td>74</td>
+    </tr>
+    <tr>
+      <td>Product-75</td>
+      <td>344.62</td>
+      <td>885.72</td>
+      <td>541.10</td>
+      <td>519.26</td>
+      <td>21.85</td>
+      <td>437.31</td>
+      <td>9.59</td>
+      <td>28.56</td>
+      <td>8.43</td>
+      <td>53.39</td>
+      <td>3.82</td>
+      <td>9.59</td>
+      <td>8.43</td>
+      <td>3.82</td>
+      <td>541.10</td>
+      <td>75</td>
+    </tr>
+    <tr>
+      <td>Product-76</td>
+      <td>358.43</td>
+      <td>901.74</td>
+      <td>543.31</td>
+      <td>514.59</td>
+      <td>19.72</td>
+      <td>433.08</td>
+      <td>5.99</td>
+      <td>31.00</td>
+      <td>6.71</td>
+      <td>50.50</td>
+      <td>7.02</td>
+      <td>5.99</td>
+      <td>6.71</td>
+      <td>16.02</td>
+      <td>543.31</td>
+      <td>76</td>
+    </tr>
+    <tr>
+      <td>Product-77</td>
+      <td>365.50</td>
+      <td>903.30</td>
+      <td>537.80</td>
+      <td>521.24</td>
+      <td>15.56</td>
+      <td>432.00</td>
+      <td>5.32</td>
+      <td>32.39</td>
+      <td>8.68</td>
+      <td>56.85</td>
+      <td>1.56</td>
+      <td>5.32</td>
+      <td>9.68</td>
+      <td>1.56</td>
+      <td>537.80</td>
+      <td>77</td>
+    </tr>
+    <tr>
+      <td>Product-78</td>
+      <td>370.73</td>
+      <td>909.34</td>
+      <td>538.61</td>
+      <td>514.79</td>
+      <td>23.82</td>
+      <td>432.09</td>
+      <td>9.66</td>
+      <td>32.42</td>
+      <td>8.12</td>
+      <td>50.28</td>
+      <td>6.04</td>
+      <td>9.66</td>
+      <td>8.12</td>
+      <td>6.04</td>
+      <td>538.61</td>
+      <td>78</td>
+    </tr>
+    <tr>
+      <td>Product-79</td>
+      <td>373.69</td>
+      <td>913.69</td>
+      <td>540.00</td>
+      <td>496.87</td>
+      <td>18.12</td>
+      <td>438.79</td>
+      <td>5.54</td>
+      <td>35.00</td>
+      <td>8.23</td>
+      <td>23.09</td>
+      <td>4.35</td>
+      <td>5.54</td>
+      <td>33.23</td>
+      <td>4.35</td>
+      <td>540.00</td>
+      <td>79</td>
+    </tr>
+    <tr>
+      <td>Product-80</td>
+      <td>374.04</td>
+      <td>915.83</td>
+      <td>541.80</td>
+      <td>523.04</td>
+      <td>18.76</td>
+      <td>443.99</td>
+      <td>9.60</td>
+      <td>58.63</td>
+      <td>7.02</td>
+      <td>20.42</td>
+      <td>2.14</td>
+      <td>9.60</td>
+      <td>7.02</td>
+      <td>2.14</td>
+      <td>541.80</td>
+      <td>80</td>
+    </tr>
+    <tr>
+      <td>Product-81</td>
+      <td>376.52</td>
+      <td>936.30</td>
+      <td>559.78</td>
+      <td>520.99</td>
+      <td>34.80</td>
+      <td>451.11</td>
+      <td>10.32</td>
+      <td>55.33</td>
+      <td>8.01</td>
+      <td>14.55</td>
+      <td>16.47</td>
+      <td>10.32</td>
+      <td>8.01</td>
+      <td>20.47</td>
+      <td>559.78</td>
+      <td>81</td>
+    </tr>
+    <tr>
+      <td>Product-82</td>
+      <td>377.53</td>
+      <td>940.60</td>
+      <td>563.07</td>
+      <td>544.34</td>
+      <td>18.73</td>
+      <td>460.41</td>
+      <td>7.22</td>
+      <td>56.12</td>
+      <td>7.21</td>
+      <td>27.81</td>
+      <td>4.30</td>
+      <td>7.22</td>
+      <td>7.21</td>
+      <td>4.30</td>
+      <td>563.07</td>
+      <td>82</td>
+    </tr>
+    <tr>
+      <td>Product-83</td>
+      <td>377.98</td>
+      <td>944.42</td>
+      <td>566.44</td>
+      <td>545.65</td>
+      <td>20.78</td>
+      <td>467.19</td>
+      <td>8.46</td>
+      <td>54.86</td>
+      <td>8.51</td>
+      <td>23.61</td>
+      <td>3.82</td>
+      <td>8.46</td>
+      <td>8.51</td>
+      <td>3.82</td>
+      <td>566.44</td>
+      <td>83</td>
+    </tr>
+    <tr>
+      <td>Product-84</td>
+      <td>392.60</td>
+      <td>953.72</td>
+      <td>561.12</td>
+      <td>524.88</td>
+      <td>27.24</td>
+      <td>461.03</td>
+      <td>8.85</td>
+      <td>54.51</td>
+      <td>9.08</td>
+      <td>9.34</td>
+      <td>9.30</td>
+      <td>8.85</td>
+      <td>18.08</td>
+      <td>9.30</td>
+      <td>561.12</td>
+      <td>84</td>
+    </tr>
+    <tr>
+      <td>Product-85</td>
+      <td>395.65</td>
+      <td>956.48</td>
+      <td>560.84</td>
+      <td>537.50</td>
+      <td>23.33</td>
+      <td>466.84</td>
+      <td>11.94</td>
+      <td>60.66</td>
+      <td>8.63</td>
+      <td>10.01</td>
+      <td>2.76</td>
+      <td>11.94</td>
+      <td>8.63</td>
+      <td>2.76</td>
+      <td>560.84</td>
+      <td>85</td>
+    </tr>
+    <tr>
+      <td>Product-86</td>
+      <td>400.05</td>
+      <td>972.34</td>
+      <td>572.29</td>
+      <td>534.79</td>
+      <td>18.49</td>
+      <td>474.37</td>
+      <td>8.86</td>
+      <td>60.43</td>
+      <td>6.13</td>
+      <td>0.00</td>
+      <td>3.50</td>
+      <td>8.86</td>
+      <td>25.13</td>
+      <td>3.50</td>
+      <td>572.29</td>
+      <td>86</td>
+    </tr>
+    <tr>
+      <td>Product-87</td>
+      <td>401.18</td>
+      <td>992.45</td>
+      <td>591.27</td>
+      <td>558.85</td>
+      <td>17.42</td>
+      <td>482.10</td>
+      <td>8.80</td>
+      <td>76.75</td>
+      <td>6.72</td>
+      <td>0.00</td>
+      <td>1.89</td>
+      <td>8.80</td>
+      <td>6.72</td>
+      <td>1.89</td>
+      <td>591.27</td>
+      <td>87</td>
+    </tr>
+    <tr>
+      <td>Product-88</td>
+      <td>407.15</td>
+      <td>999.75</td>
+      <td>592.60</td>
+      <td>571.25</td>
+      <td>21.35</td>
+      <td>484.93</td>
+      <td>5.83</td>
+      <td>77.64</td>
+      <td>8.21</td>
+      <td>8.68</td>
+      <td>7.30</td>
+      <td>5.83</td>
+      <td>8.21</td>
+      <td>7.30</td>
+      <td>592.60</td>
+      <td>88</td>
+    </tr>
+    <tr>
+      <td>Product-89</td>
+      <td>412.48</td>
+      <td>1008.97</td>
+      <td>596.49</td>
+      <td>565.91</td>
+      <td>28.58</td>
+      <td>485.44</td>
+      <td>11.09</td>
+      <td>74.76</td>
+      <td>8.27</td>
+      <td>5.71</td>
+      <td>9.22</td>
+      <td>11.09</td>
+      <td>10.27</td>
+      <td>9.22</td>
+      <td>596.49</td>
+      <td>89</td>
+    </tr>
+    <tr>
+      <td>Product-90</td>
+      <td>424.95</td>
+      <td>1014.60</td>
+      <td>589.65</td>
+      <td>565.45</td>
+      <td>23.20</td>
+      <td>484.06</td>
+      <td>10.61</td>
+      <td>74.42</td>
+      <td>7.96</td>
+      <td>6.97</td>
+      <td>4.63</td>
+      <td>10.61</td>
+      <td>7.96</td>
+      <td>4.63</td>
+      <td>589.65</td>
+      <td>90</td>
+    </tr>
+    <tr>
+      <td>Product-91</td>
+      <td>445.13</td>
+      <td>1029.81</td>
+      <td>584.68</td>
+      <td>551.88</td>
+      <td>32.81</td>
+      <td>474.49</td>
+      <td>10.83</td>
+      <td>71.55</td>
+      <td>6.76</td>
+      <td>5.84</td>
+      <td>15.21</td>
+      <td>10.83</td>
+      <td>6.76</td>
+      <td>15.21</td>
+      <td>584.68</td>
+      <td>91</td>
+    </tr>
+    <tr>
+      <td>Product-92</td>
+      <td>447.59</td>
+      <td>1043.91</td>
+      <td>596.31</td>
+      <td>566.96</td>
+      <td>29.36</td>
+      <td>482.86</td>
+      <td>8.32</td>
+      <td>70.00</td>
+      <td>6.95</td>
+      <td>14.10</td>
+      <td>14.09</td>
+      <td>8.32</td>
+      <td>6.95</td>
+      <td>14.09</td>
+      <td>596.31</td>
+      <td>92</td>
+    </tr>
+    <tr>
+      <td>Product-93</td>
+      <td>450.90</td>
+      <td>1056.02</td>
+      <td>605.13</td>
+      <td>578.37</td>
+      <td>20.76</td>
+      <td>487.87</td>
+      <td>6.10</td>
+      <td>70.84</td>
+      <td>8.54</td>
+      <td>19.65</td>
+      <td>6.12</td>
+      <td>6.10</td>
+      <td>8.54</td>
+      <td>12.12</td>
+      <td>605.13</td>
+      <td>93</td>
+    </tr>
+    <tr>
+      <td>Product-94</td>
+      <td>450.91</td>
+      <td>1058.25</td>
+      <td>607.34</td>
+      <td>589.62</td>
+      <td>17.72</td>
+      <td>493.96</td>
+      <td>7.72</td>
+      <td>71.66</td>
+      <td>7.77</td>
+      <td>24.00</td>
+      <td>2.22</td>
+      <td>7.72</td>
+      <td>7.77</td>
+      <td>2.22</td>
+      <td>607.34</td>
+      <td>94</td>
+    </tr>
+    <tr>
+      <td>Product-95</td>
+      <td>458.40</td>
+      <td>1064.69</td>
+      <td>606.29</td>
+      <td>582.71</td>
+      <td>23.59</td>
+      <td>494.19</td>
+      <td>9.11</td>
+      <td>70.33</td>
+      <td>8.04</td>
+      <td>18.19</td>
+      <td>6.44</td>
+      <td>9.11</td>
+      <td>8.04</td>
+      <td>6.44</td>
+      <td>606.29</td>
+      <td>95</td>
+    </tr>
+    <tr>
+      <td>Product-96</td>
+      <td>463.44</td>
+      <td>1079.41</td>
+      <td>615.97</td>
+      <td>583.36</td>
+      <td>26.61</td>
+      <td>498.25</td>
+      <td>9.65</td>
+      <td>68.71</td>
+      <td>8.23</td>
+      <td>16.40</td>
+      <td>8.72</td>
+      <td>9.65</td>
+      <td>8.23</td>
+      <td>14.72</td>
+      <td>615.97</td>
+      <td>96</td>
+    </tr>
+    <tr>
+      <td>Product-97</td>
+      <td>471.02</td>
+      <td>1080.47</td>
+      <td>609.46</td>
+      <td>593.81</td>
+      <td>15.65</td>
+      <td>500.33</td>
+      <td>6.34</td>
+      <td>70.61</td>
+      <td>8.25</td>
+      <td>22.87</td>
+      <td>1.06</td>
+      <td>6.34</td>
+      <td>8.25</td>
+      <td>1.06</td>
+      <td>609.46</td>
+      <td>97</td>
+    </tr>
+    <tr>
+      <td>Product-98</td>
+      <td>479.41</td>
+      <td>1093.20</td>
+      <td>613.79</td>
+      <td>581.47</td>
+      <td>32.31</td>
+      <td>498.27</td>
+      <td>10.38</td>
+      <td>68.48</td>
+      <td>9.21</td>
+      <td>14.72</td>
+      <td>12.72</td>
+      <td>10.38</td>
+      <td>9.21</td>
+      <td>12.72</td>
+      <td>613.79</td>
+      <td>98</td>
+    </tr>
+    <tr>
+      <td>Product-99</td>
+      <td>481.11</td>
+      <td>1095.37</td>
+      <td>614.25</td>
+      <td>596.55</td>
+      <td>17.70</td>
+      <td>506.95</td>
+      <td>8.94</td>
+      <td>68.75</td>
+      <td>6.59</td>
+      <td>20.85</td>
+      <td>2.17</td>
+      <td>8.94</td>
+      <td>6.59</td>
+      <td>2.17</td>
+      <td>614.25</td>
+      <td>99</td>
+    </tr>
+  </tbody>
+</table>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Simulation Event Log (First 20 Events)</h2>
+            <div class="table-container">
+                <table border="1" class="dataframe table table-striped table-hover">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Time</th>
+      <th>Event</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1.28</td>
+      <td>Product-0 ARRIVED</td>
+    </tr>
+    <tr>
+      <td>1.28</td>
+      <td>Product-0 START M1</td>
+    </tr>
+    <tr>
+      <td>1.31</td>
+      <td>Product-1 ARRIVED</td>
+    </tr>
+    <tr>
+      <td>4.80</td>
+      <td>Product-2 ARRIVED</td>
+    </tr>
+    <tr>
+      <td>8.47</td>
+      <td>M1 FAILED</td>
+    </tr>
+    <tr>
+      <td>9.28</td>
+      <td>Product-0 PAUSED M1 due to failure</td>
+    </tr>
+    <tr>
+      <td>10.28</td>
+      <td>Product-0 PAUSED M1 due to failure</td>
+    </tr>
+    <tr>
+      <td>10.95</td>
+      <td>Product-3 ARRIVED</td>
+    </tr>
+    <tr>
+      <td>11.04</td>
+      <td>Product-4 ARRIVED</td>
+    </tr>
+    <tr>
+      <td>11.28</td>
+      <td>Product-0 PAUSED M1 due to failure</td>
+    </tr>
+    <tr>
+      <td>11.98</td>
+      <td>Product-5 ARRIVED</td>
+    </tr>
+    <tr>
+      <td>12.28</td>
+      <td>Product-0 PAUSED M1 due to failure</td>
+    </tr>
+    <tr>
+      <td>13.28</td>
+      <td>Product-0 PAUSED M1 due to failure</td>
+    </tr>
+    <tr>
+      <td>14.28</td>
+      <td>Product-0 PAUSED M1 due to failure</td>
+    </tr>
+    <tr>
+      <td>15.16</td>
+      <td>Product-6 ARRIVED</td>
+    </tr>
+    <tr>
+      <td>15.28</td>
+      <td>Product-0 PAUSED M1 due to failure</td>
+    </tr>
+    <tr>
+      <td>16.28</td>
+      <td>Product-0 PAUSED M1 due to failure</td>
+    </tr>
+    <tr>
+      <td>17.10</td>
+      <td>Product-7 ARRIVED</td>
+    </tr>
+    <tr>
+      <td>17.28</td>
+      <td>Product-0 PAUSED M1 due to failure</td>
+    </tr>
+    <tr>
+      <td>18.25</td>
+      <td>Product-8 ARRIVED</td>
+    </tr>
+  </tbody>
+</table>
+            </div>
+        </div>
+    </body>
+    </html>
+    

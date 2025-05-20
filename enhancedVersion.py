@@ -1402,10 +1402,21 @@ def run_and_display(total_products=100, display_products=20, selection_method='f
     
     return results
 
+def get_user_input():
+    while True:
+        try:
+            total_products = int(input("Enter the number of products to process: "))
+            if total_products <= 0:
+                print("Please enter a positive number.")
+                continue
+            return total_products
+        except ValueError:
+            print("Please enter a valid integer.")
 # Run the simulation when script is executed
 if __name__ == "__main__":
     # Set parameters for simulation
-    TOTAL_PRODUCTS = 100  # Simulate 100 products
+    # Get the number of products from user input
+    TOTAL_PRODUCTS = get_user_input()
     DISPLAY_PRODUCTS = 20  # But only display 20 in reports/visualizations
     SELECTION_METHOD = 'first'  # Show the first 20 products
     
