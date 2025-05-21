@@ -42,7 +42,7 @@ class Machine:
     def __init__(self, env, name):
         self.env = env
         self.name = name
-        self.resource = simpy.Resource(env, capacity=1)
+        self.resource = simpy.Resource(env, capacity=2)
         self.broken = False
         self.total_downtime = 0
         self.last_failure_time = 0
@@ -344,13 +344,14 @@ def analyze_results(machines, sim_time):
         'Average Interarrival Time': avg_interarrival_time,
         'Average Waiting Time (Those Who Wait)': total_system_wait / products_that_waited if products_that_waited > 0 else 0,
         'Average Time in System': product_df['Lead Time'].mean(),
-        'Server Utilization': 1 - (sum(m.total_idle_time for m in machines) / (sim_time * len(machines)))
+        'Server Utilization': min(1.0, sum(min(1.0, (m.utilization_time / sim_time) / m.resource.capacity) for m in machines) / len(machines)) if sim_time > 0 else 0
     }
     
     # Machine metrics table with queueing theory metrics
     machine_data = []
     for m in machines:
-        utilization_pct = (m.utilization_time / sim_time) * 100 if sim_time > 0 else 0
+        utilization_pct = (m.utilization_time / (sim_time * m.resource.capacity)) * 100 if sim_time > 0 else 0
+
         availability_pct = ((sim_time - m.total_downtime) / sim_time) * 100 if sim_time > 0 else 0
         
         # Calculate queueing metrics for this machine
@@ -360,7 +361,8 @@ def analyze_results(machines, sim_time):
         prob_idle = m.total_idle_time / sim_time if sim_time > 0 else 0
         avg_service_time = m.total_service_time / total_products if total_products > 0 else 0
         avg_wait_those_who_wait = m.total_waiting_time / m.products_that_waited if m.products_that_waited > 0 else 0
-        server_utilization = 1 - prob_idle
+        server_utilization = min(1.0, (m.utilization_time / sim_time) / m.resource.capacity) if sim_time > 0 else 0
+
 
         machine_data.append({
             'Machine': m.name,
